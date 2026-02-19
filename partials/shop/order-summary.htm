@@ -2,14 +2,15 @@
     {% for item in items %}
         {% set product = item.product %}
         {% set images = product.images %}
-        <li class="list-group-item px-4 py-3">
+        {% set isBundleChild = item.isBundleItem() %}
+        <li class="list-group-item px-4 py-3 {{ isBundleChild ? 'bundle-child-item' }}">
             <div class="row align-items-center">
                 <div class="col-3">
                     <div class="position-relative">
                         {% if images is empty %}
-                            <img class="img-fluid" src="{{ 'assets/images/default-post.png'|theme }}" height="100" />
+                            <img class="img-fluid" src="{{ 'assets/images/default-post.png'|theme }}" height="{{ isBundleChild ? 60 : 100 }}" />
                         {% else %}
-                            <img class="img-fluid" src="{{ images.first|resize(0, 100, { mode: 'auto' }) }}" alt="{{ product.name }}" />
+                            <img class="img-fluid" src="{{ images.first|resize(0, isBundleChild ? 60 : 100, { mode: 'auto' }) }}" alt="{{ product.name }}" />
                         {% endif %}
                         <span class="translate-middle badge rounded-pill bg-secondary position-absolute top-0 start-100 fw-normal">
                             {{ item.quantity }}
@@ -17,6 +18,9 @@
                     </div>
                 </div>
                 <div class="col-6">
+                    {% if isBundleChild and item.bundle_master_bundle_item_name %}
+                        <span class="text-muted small"><em>{{ item.bundle_master_bundle_item_name }}</em></span><br />
+                    {% endif %}
                     <h5 class="mb-1">
                         {{ product.name }}
                     </h5>
@@ -47,7 +51,6 @@
                 <div>Subtotal</div>
             </div>
             <span>
-                {# {{ order.subtotal|currency }} #}
                 {{ order.final_subtotal|currency }}
             </span>
         </li>
@@ -63,16 +66,6 @@
                 <span>{{ order.final_shipping_quote|currency }}</span>
             {% endif %}
         </li>
-        {#
-        {% for tax in order.all_taxes %}
-            <li class="list-group-item d-flex justify-content-between small">
-                <div class="me-auto">
-                    <div>{{ tax.name }}</div>
-                </div>
-                <span>{{ tax.total|currency }}</span>
-            </li>
-        {% endfor %}
-        #}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <div class="me-auto">
                 <div class="fw-bold">Total</div>

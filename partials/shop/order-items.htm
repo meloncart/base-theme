@@ -14,18 +14,22 @@
     </li>
     {% for item in items %}
         {% set product = item.product %}
-        <li class="list-group-item py-3 py-lg-0 border-top">
+        {% set isBundleChild = item.isBundleItem() %}
+        <li class="list-group-item py-3 py-lg-0 border-top {{ isBundleChild ? 'bundle-child-item' }}">
             <div class="row align-items-center py-3">
                 <div class="col-3 col-md-2">
                     <a href="{{ product.pageUrl('shop/product') }}">
                         {% if product.images is empty %}
-                            <img src="{{ 'assets/images/default-post.png'|theme }}" height="100" />
+                            <img src="{{ 'assets/images/default-post.png'|theme }}" height="{{ isBundleChild ? 60 : 100 }}" />
                         {% else %}
-                            <img class="img-fluid" src="{{ product.images.first|resize(0, 100, { mode: 'auto' }) }}" alt="{{ product.name }}" />
+                            <img class="img-fluid" src="{{ product.images.first|resize(0, isBundleChild ? 60 : 100, { mode: 'auto' }) }}" alt="{{ product.name }}" />
                         {% endif %}
                     </a>
                 </div>
                 <div class="col-4 col-md-5">
+                    {% if isBundleChild and item.bundle_master_bundle_item_name %}
+                        <span class="text-muted small"><em>{{ item.bundle_master_bundle_item_name }}</em></span><br />
+                    {% endif %}
                     <a href="{{ product.pageUrl('shop/product') }}" class="text-inherit">
                         <h5 class="mb-2">{{ product.name }}</h5>
                     </a>

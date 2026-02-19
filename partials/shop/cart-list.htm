@@ -12,16 +12,18 @@
             </div>
         </div>
     </li>
-    {% for item in items %}
+    {% set itemList = items.values() %}
+    {% for item in itemList %}
         {% set product = item.product %}
-        <li class="list-group-item py-3 py-lg-0 px-0">
+        {% set isBundleChild = item.isBundleItem() %}
+        <li class="list-group-item py-3 py-lg-0 px-0 {{ isBundleChild ? 'bundle-child-item' }}">
             <div class="row align-items-center">
                 <div class="col-3 col-md-2">
                     <a href="{{ product.pageUrl('shop/product') }}">
                         {% if product.images is empty %}
-                            <img src="{{ 'assets/images/default-post.png'|theme }}" height="100" />
+                            <img src="{{ 'assets/images/default-post.png'|theme }}" height="{{ isBundleChild ? 60 : 100 }}" />
                         {% else %}
-                            <img class="img-fluid" src="{{ product.images.first|resize(0, 100, { mode: 'auto' }) }}" alt="{{ product.name }}" />
+                            <img class="img-fluid" src="{{ product.images.first|resize(0, isBundleChild ? 60 : 100, { mode: 'auto' }) }}" alt="{{ product.name }}" />
                         {% endif %}
                     </a>
                 </div>
@@ -46,35 +48,59 @@
                     {% endif %}
                 </div>
                 <div class="col-3">
-                    <div data-control="quantity-input" class="input-group control-quantity-input">
-                        <input type="button" value="-" class="btn btn-sm button-minus ms-auto" />
-                        <input
-                            class="quantity-field form-input form-control-sm"
-                            type="number"
-                            step="1"
-                            min="1"
-                            max="10"
-                            name="item_quantity[{{ item.key }}]"
-                            value="{{ item.quantity }}" />
-                        <input type="button" value="+" class="btn btn-sm button-plus me-auto" />
-                    </div>
-                    <div class="mt-2 small text-center">
-                        <a
-                            href="javascript:;"
-                            data-request="onRemoveFromCart"
-                            data-request-confirm="Remove this item from your cart?"
-                            data-request-data="{ key: '{{ item.key }}' }"
-                            data-request-update="{ 'shop/cart-view': '#cartPartial', 'shop/mini-cart': '#miniCart' }"
-                            class="text-decoration-none text-inherit">
-                            <i class="bi bi-trash3"></i>
-                            <span class="text-muted">Remove</span>
-                        </a>
-                    </div>
+                    {% if isBundleChild %}
+                        <div class="text-center text-muted">
+                            {{ item.quantity }}
+                        </div>
+                    {% else %}
+                        <div data-control="quantity-input" class="input-group control-quantity-input">
+                            <input type="button" value="-" class="btn btn-sm button-minus ms-auto" />
+                            <input
+                                class="quantity-field form-input form-control-sm"
+                                type="number"
+                                step="1"
+                                min="1"
+                                max="10"
+                                name="item_quantity[{{ item.key }}]"
+                                value="{{ item.quantity }}" />
+                            <input type="button" value="+" class="btn btn-sm button-plus me-auto" />
+                        </div>
+                        <div class="mt-2 small text-center">
+                            <a
+                                href="javascript:;"
+                                data-request="onRemoveFromCart"
+                                data-request-confirm="Remove this item from your cart?"
+                                data-request-data="{ key: '{{ item.key }}' }"
+                                data-request-update="{ 'shop/cart-view': '#cartPartial', 'shop/mini-cart': '#miniCart' }"
+                                class="text-decoration-none text-inherit">
+                                <i class="bi bi-trash3"></i>
+                                <span class="text-muted">Remove</span>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-2 text-lg-end text-start text-md-end col-md-2">
                     <span>{{ item.final_line_price|currency }}</span>
                 </div>
             </div>
         </li>
+        {% if isBundleChild %}
+            {% set nextItem = itemList[loop.index0 + 1]|default(null) %}
+            {% if loop.last or (nextItem and not nextItem.isBundleItem()) %}
+                {% set masterItem = item.getBundleMasterItem(itemList) %}
+                {% if masterItem %}
+                    <li class="list-group-item py-2 px-0 bundle-totals-row">
+                        <div class="row align-items-center">
+                            <div class="col-10 text-end">
+                                <span class="fw-bold">Bundle Total</span>
+                            </div>
+                            <div class="col-2 text-lg-end text-start text-md-end col-md-2">
+                                <span class="fw-bold">{{ masterItem.getBundleTotalPrice(itemList)|currency }}</span>
+                            </div>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endif %}
     {% endfor %}
 </ul>
