@@ -1,8 +1,8 @@
 {
-    "name": "october/demo-theme",
+    "name": "meloncart/base-theme",
     "type": "october-theme",
-    "description": "Demo October CMS theme",
-    "keywords": ["october", "cms", "demo", "theme"],
+    "description": "Meloncart base eCommerce theme",
+    "keywords": ["meloncart", "cms", "ecommerce", "theme"],
     "authors": [
         {
             "name": "Alexey Bobkov",
