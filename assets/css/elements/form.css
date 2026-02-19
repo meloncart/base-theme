@@ -9,7 +9,7 @@ input[type=number] {
 }
 
 .form-control {
-    border-color: @input-border-color;
+    border-color: var(--input-border-color);
     box-shadow: 0px 0px 23px rgba(129, 138, 166, 0.1);
     border-radius: 0.7rem;
 }
@@ -30,7 +30,7 @@ input[type=number] {
         width: 24px;
         height: 24px;
         display: block;
-        background-image: url('@{assets-url}/images/icons/icon-search.png');
+        background-image: url('../../images/icons/icon-search.png');
         background-size: 24px 24px;
     }
 }

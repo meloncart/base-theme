@@ -1,8 +1,8 @@
-//
-// Common Styles
-//
+/*
+ * Common Styles
+ */
 
-// BS vars
+/* BS vars */
 :root {
     --bs-body-line-height: 1.7;
     --bs-body-color: #5c6c75;
@@ -35,7 +35,7 @@ h6, .h6 {
     font-size: 0.875rem;
 }
 
-// Disable collapse animation
+/* Disable collapse animation */
 .collapsing {
     transition: none;
 }

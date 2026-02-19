@@ -1,0 +1,69 @@
+/*
+ * CSS Variables
+ */
+:root {
+    /* Brands */
+    --brand-primary: #0aad0a;
+    --brand-info: #016bf8;
+    --brand-success: #198754;
+    --brand-warning: #ffc107;
+    --brand-danger: #db3030;
+    --brand-accent: #0aad0a;
+
+    /* Grays */
+    --gray-base: #000;
+    --gray-darker: #21313c;
+    --gray-dark: #3d4f58;
+    --gray: #889397;
+    --gray-light: #c1c7c6;
+    --gray-lighter: #f0f3f2;
+
+    /* Typography */
+    --font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --line-height-base: 1.7;
+    --font-size-base: 16px;
+    --font-size-h3: 18px;
+    --text-color: #5c6c75;
+    --headings-color: #001e2b;
+    --headings-font-weight: bold;
+    --border-radius-base: 4px;
+
+    --code-color: #db3030;
+    --code-bg: #f0f3f2;
+
+    /* Jumbotron */
+    --jumbotron-padding: 40px;
+    --jumbotron-bg: transparent;
+    --jumbotron-color: #3d4f58;
+    --jumbotron-heading-color: var(--headings-color);
+    --jumbotron-font-size: 20px;
+    --jumbotron-heading-font-size: 65px;
+
+    /* Navbar */
+    --navbar-inverse-bg: #0aad0a;
+    --navbar-inverse-link-color: rgba(255,255,255,0.8);
+
+    /* Callouts */
+    --callout-padding: 20px;
+    --callout-border-radius: var(--border-radius-base);
+    --callout-border: var(--gray-lighter);
+
+    --callout-info-bg: #f4f8fa;
+    --callout-info-text: #31708f;
+    --callout-info-border: #dbecef;
+
+    --callout-warning-bg: #faf8f0;
+    --callout-warning-text: #8a6d3b;
+    --callout-warning-border: #f4ebdd;
+
+    --callout-danger-bg: #fdf7f7;
+    --callout-danger-text: #a94442;
+    --callout-danger-border: #f8e3e6;
+
+    --callout-success-bg: #f9fdf7;
+    --callout-success-text: #3c763d;
+    --callout-success-border: #edf8e3;
+
+    /* Forms */
+    --input-border-color: #dfe2e1;
+}

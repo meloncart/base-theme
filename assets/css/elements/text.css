@@ -25,13 +25,13 @@
 
     &.text-icon-date {
         &:before {
-            background-image: url('@{assets-url}/images/icons/icon-calendar.png');
+            background-image: url('../../assets/images/icons/icon-calendar.png');
         }
     }
 
     &.text-icon-author {
         &:before {
-            background-image: url('@{assets-url}/images/icons/icon-user.png');
+            background-image: url('../../assets/images/icons/icon-user.png');
         }
     }
 }
