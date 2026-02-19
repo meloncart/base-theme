@@ -19,7 +19,7 @@ vars[activeNavLink] = 'shop'
 
 {% set subcategories = category.children %}
 {% set hasSubcategories = subcategories.count %}
-{% set hasProducts = category.countProducts %}
+{% set hasProducts = category.countProducts() %}
 
 <div class="container container-padded">
     <div class="mb-3">

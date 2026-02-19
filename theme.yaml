@@ -1,13 +1,13 @@
-name: Commerce
-description: 'Demo Commerce theme.'
-author: Responsiv Internet
-homepage: 'http://octobercms.com'
-code: Commerce
-authorCode: Responsiv
+name: Base
+description: 'Base eCommerce theme.'
+author: Meloncart
+homepage: 'http://meloncart.com'
+code: Base
+authorCode: Meloncart
 require:
+    - Meloncart.Shop
     - RainLab.User
     - RainLab.UserPlus
     - RainLab.Location
-    - Responsiv.Shop
     - Responsiv.Pay
     - Responsiv.Currency
