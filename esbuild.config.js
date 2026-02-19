@@ -8,6 +8,22 @@ function copyDir(src, dest) {
     execSync(`cp -r "${src}" "${dest}"`, { stdio: 'inherit' });
 }
 
+// jQuery Global Shim (maps `import $ from 'jquery'` to window.jQuery)
+// =========================================================================
+
+const jqueryGlobalPlugin = {
+    name: 'jquery-global',
+    setup(build) {
+        build.onResolve({ filter: /^jquery$/ }, () => ({
+            path: 'jquery',
+            namespace: 'jquery-global',
+        }));
+        build.onLoad({ filter: /.*/, namespace: 'jquery-global' }, () => ({
+            contents: 'module.exports = window.jQuery',
+        }));
+    },
+};
+
 // JS Bundling
 // =========================================================================
 
@@ -21,18 +37,7 @@ await esbuild.build({
     minify: isProduction,
     sourcemap: false,
     target: ['es2020'],
-    external: ['jquery'],
-});
-
-await esbuild.build({
-    entryPoints: ['assets/vendor/codeblocks/codeblocks.js'],
-    bundle: true,
-    format: 'iife',
-    outfile: 'assets/vendor/codeblocks/codeblocks.min.js',
-    minify: isProduction,
-    sourcemap: false,
-    target: ['es2020'],
-    external: ['jquery'],
+    plugins: [jqueryGlobalPlugin],
 });
 
 // SCSS Compilation

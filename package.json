@@ -3,8 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "node esbuild.config.js",
-        "prod": "node esbuild.config.js --production",
-        "production": "node esbuild.config.js --production"
+        "build": "node esbuild.config.js --production"
     },
     "devDependencies": {
         "esbuild": "^0.24.0",
@@ -13,7 +12,6 @@
     "dependencies": {
         "bootstrap": "^5.3.0",
         "bootstrap-icons": "^1.10",
-        "codemirror": "^5.64.0",
         "jquery": "^3.6.0",
         "slick-carousel": "^1.8.1",
         "photoswipe": "^5.2.4",
