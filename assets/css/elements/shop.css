@@ -37,3 +37,30 @@
         padding-top: 5px;
     }
 }
+
+/* Bundle Items - Product Page */
+.product-bundle .bundle-slot {
+    border-left: 3px solid var(--bs-primary);
+}
+
+.product-bundle .bundle-product-detail {
+    background-color: var(--bs-gray-100);
+    border-radius: .375rem;
+    padding: .75rem;
+}
+
+.bundle-product-parameters {
+    transition: all 0.2s ease;
+}
+
+/* Bundle Items - Cart & Orders */
+.bundle-child-item {
+    background-color: rgba(0, 0, 0, 0.015);
+    border-left: 3px solid var(--bs-gray-300);
+    padding-left: 1rem !important;
+}
+
+.bundle-totals-row {
+    border-left: 3px solid var(--bs-primary);
+    background-color: var(--bs-gray-100) !important;
+}

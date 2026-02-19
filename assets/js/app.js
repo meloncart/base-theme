@@ -29,6 +29,23 @@ addEventListener('render', function() {
     });
 });
 
+// Bundle radio: show/hide parameters for selected product
+$(document).on('change', '.bundle-slot input[type="radio"]', function() {
+    var $slot = $(this).closest('.bundle-slot');
+    $slot.find('.bundle-product-parameters').addClass('d-none');
+    var selectedId = $(this).val();
+    if (selectedId) {
+        $slot.find('[data-bundle-params="' + selectedId + '"]').removeClass('d-none');
+    }
+});
+
+// Bundle checkbox: toggle parameters for checked/unchecked products
+$(document).on('change', '.bundle-slot input[type="checkbox"]', function() {
+    var paramId = $(this).val();
+    var $slot = $(this).closest('.bundle-slot');
+    $slot.find('[data-bundle-params="' + paramId + '"]').toggleClass('d-none', !$(this).is(':checked'));
+});
+
 // Makes the mini cart jump when an update is detected
 addEventListener('ajax:update-complete', function(event) {
     const { handler } = event.detail.context;
