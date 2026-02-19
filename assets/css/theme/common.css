@@ -4,12 +4,24 @@
 
 /* BS vars */
 :root {
-    --bs-body-line-height: 1.7;
+    --bs-body-line-height: 1.6;
     --bs-body-color: #5c6c75;
+    --bs-body-font-weight: 500;
     --bs-font-sans-serif: "Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     --bs-body-font-size: 0.875rem;
     --bs-primary: #0aad0a;
     --bs-primary-rgb: 10,173,10;
+    --bs-border-radius: 0.5rem;
+    --bs-border-radius-sm: 0.25rem;
+    --bs-border-radius-lg: 0.75rem;
+}
+
+.btn {
+    --bs-btn-padding-y: 0.55rem;
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-font-size: 0.875rem;
+    --bs-btn-font-weight: 600;
+    --bs-btn-border-radius: var(--bs-border-radius);
 }
 
 body {
