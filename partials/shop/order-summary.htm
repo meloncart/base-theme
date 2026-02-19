@@ -24,6 +24,9 @@
                     <h5 class="mb-1">
                         {{ product.name }}
                     </h5>
+                    {% if item.variant_id %}
+                        <span class="text-muted small">{{ item.variant.name }}</span><br />
+                    {% endif %}
                     <div class="small">
                         {% for option in item.options %}
                             {{ option.name }}: {{ option.value }}{{ not loop.last ? ', ' : '<br />' }}

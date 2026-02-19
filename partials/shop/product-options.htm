@@ -9,9 +9,17 @@
                     <div class="col-7 col-md-8">
                         <select
                             name="product_options[{{ option.hash }}]"
-                            class="form-select">
+                            class="form-select"
+                            {% if product.use_variants %}
+                                data-request="catalog::onAction"
+                                data-request-update="{ 'shop/product-view': '#productPage' }"
+                            {% endif %}>
                             {% for value in option.values %}
-                                <option value="{{ value }}">{{ value }}</option>
+                                <option
+                                    value="{{ value }}"
+                                    {{ post('product_options.' ~ option.hash) == value ? 'selected' }}>
+                                    {{ value }}
+                                </option>
                             {% endfor %}
                         </select>
                     </div>

@@ -25,9 +25,22 @@
             </h1>
 
             <div class="fs-4">
-                <span class="fw-bold text-dark">{{ product.final_sale_price|currency }}</span>
-                {% if product.on_sale %}
-                    <span class="text-decoration-line-through text-muted">{{ product.final_price|currency }}</span>
+                {% if product.use_variants %}
+                    {% set postedOptions = post('product_options', {}) %}
+                    {% set variant = product.resolveVariantSafe(postedOptions) %}
+                    {% if variant %}
+                        <span class="fw-bold text-dark">{{ variant.getCompiledPrice(1)|currency }}</span>
+                        {% if variant.is_on_sale %}
+                            <span class="text-decoration-line-through text-muted">{{ variant.price|currency }}</span>
+                        {% endif %}
+                    {% else %}
+                        <span class="fw-bold text-dark">{{ product.final_sale_price|currency }}</span>
+                    {% endif %}
+                {% else %}
+                    <span class="fw-bold text-dark">{{ product.final_sale_price|currency }}</span>
+                    {% if product.on_sale %}
+                        <span class="text-decoration-line-through text-muted">{{ product.final_price|currency }}</span>
+                    {% endif %}
                 {% endif %}
             </div>
 
@@ -49,9 +62,34 @@
                     </div>
                 {% endif %}
 
-                <div class="product-panel">
-                    {% partial 'shop/add-to-cart-control' %}
-                </div>
+                {% if product.use_variants %}
+                    {% set postedOptions = post('product_options', {}) %}
+                    {% set variant = product.resolveVariantSafe(postedOptions) %}
+                    {% if variant and not variant.is_enabled %}
+                        <div class="alert alert-warning">
+                            This product combination is currently unavailable.
+                        </div>
+                    {% elseif variant and variant.isOutOfStock() and not product.allow_pre_order %}
+                        <div class="alert alert-danger">
+                            This product is temporarily out of stock.
+                            {% if variant.available_at %}
+                                Expected availability: <strong>{{ variant.available_at|date('M d, Y') }}</strong>
+                            {% endif %}
+                        </div>
+                    {% elseif not variant and postedOptions is not empty %}
+                        <div class="alert alert-warning">
+                            This product combination is not available.
+                        </div>
+                    {% else %}
+                        <div class="product-panel">
+                            {% partial 'shop/add-to-cart-control' %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="product-panel">
+                        {% partial 'shop/add-to-cart-control' %}
+                    </div>
+                {% endif %}
             </form>
         </div>
     </div>

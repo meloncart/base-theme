@@ -3,7 +3,13 @@
         <tr>
             <td>
                 <span class="product-price">
-                    {{ product.final_sale_price|currency }}
+                    {% if product.use_variants %}
+                        {% set postedOptions = post('product_options', {}) %}
+                        {% set variant = product.resolveVariantSafe(postedOptions) %}
+                        {{ variant ? variant.getCompiledPrice(1)|currency : product.final_sale_price|currency }}
+                    {% else %}
+                        {{ product.final_sale_price|currency }}
+                    {% endif %}
                 </span>
             </td>
             <td class="cart-symbol">x</td>

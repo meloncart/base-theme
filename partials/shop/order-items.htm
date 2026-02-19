@@ -33,6 +33,9 @@
                     <a href="{{ product.pageUrl('shop/product') }}" class="text-inherit">
                         <h5 class="mb-2">{{ product.name }}</h5>
                     </a>
+                    {% if item.variant_id %}
+                        <span class="text-muted small">{{ item.variant.name }}</span><br />
+                    {% endif %}
 
                     <span class="text-success small">{{ item.unit_price|currency }}</span>
                     {% if item.discount %}

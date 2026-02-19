@@ -31,6 +31,9 @@
                     <a href="{{ product.pageUrl('shop/product') }}" class="text-inherit">
                         <h5 class="mb-2">{{ product.name }}</h5>
                     </a>
+                    {% if item.variant %}
+                        <span class="text-muted small">{{ item.variant.name }}</span><br />
+                    {% endif %}
 
                     {% for option in item.options %}
                         {{ option.name }}: {{ option.value }}{{ not loop.last ? ', ' : '<br />' }}

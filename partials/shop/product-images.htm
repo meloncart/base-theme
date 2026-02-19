@@ -1,4 +1,10 @@
-{% set images = product.images %}
+{% if product.use_variants %}
+    {% set postedOptions = post('product_options', {}) %}
+    {% set variant = product.resolveVariantSafe(postedOptions) %}
+    {% set images = (variant and variant.images is not empty) ? variant.images : product.images %}
+{% else %}
+    {% set images = product.images %}
+{% endif %}
 {% if images is empty %}
     <div class="product-no-image">
         <img class="mb-3 img-fluid" src="{{ 'assets/images/default-post.png'|theme }}" />
