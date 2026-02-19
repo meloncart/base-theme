@@ -1,0 +1,121 @@
+{% set itemProducts = bundleItem.item_products %}
+
+{% if bundleItem.control_type == 'dropdown' %}
+    {# -- Dropdown Control -- #}
+    {% set selectedProductId = post('bundle_items.' ~ bundleItem.id ~ '.product_id') %}
+    <select
+        name="bundle_items[{{ bundleItem.id }}][product_id]"
+        class="form-select mb-2"
+        data-request="catalog::onAction"
+        data-request-update="{ 'shop/bundle': '#productBundleItems' }">
+        {% if not bundleItem.is_required %}
+            <option value="">-- Please Select --</option>
+        {% endif %}
+        {% for itemProduct in itemProducts %}
+            {% if itemProduct.is_active %}
+                <option
+                    value="{{ itemProduct.id }}"
+                    {{ (selectedProductId == itemProduct.id or (not selectedProductId and itemProduct.is_default)) ? 'selected' }}>
+                    {{ itemProduct.product.name }}
+                    {% if itemProduct.getEffectivePrice() > 0 %}
+                        ({{ itemProduct.getEffectivePrice()|currency }})
+                    {% endif %}
+                </option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    {# Show parameters for the selected product #}
+    {% for itemProduct in itemProducts %}
+        {% if itemProduct.is_active %}
+            {% set isSelected = (selectedProductId == itemProduct.id) or (not selectedProductId and itemProduct.is_default) %}
+            {% if isSelected %}
+                {% partial 'shop/bundle-product-parameters'
+                    bundleItem=bundleItem
+                    itemProduct=itemProduct
+                    bundleProduct=itemProduct.product %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+{% elseif bundleItem.control_type == 'radio' %}
+    {# -- Radio Control -- #}
+    {% set selectedProductId = post('bundle_items.' ~ bundleItem.id ~ '.product_id') %}
+    <div class="bundle-radio-group">
+        {% if not bundleItem.is_required %}
+            <div class="form-check mb-2">
+                <input
+                    type="radio"
+                    name="bundle_items[{{ bundleItem.id }}][product_id]"
+                    value=""
+                    id="bundleRadio{{ bundleItem.id }}_none"
+                    class="form-check-input"
+                    {{ not selectedProductId and not bundleItem.is_required ? 'checked' }} />
+                <label class="form-check-label" for="bundleRadio{{ bundleItem.id }}_none">
+                    No, thank you
+                </label>
+            </div>
+        {% endif %}
+        {% for itemProduct in itemProducts %}
+            {% if itemProduct.is_active %}
+                {% set isSelected = (selectedProductId == itemProduct.id) or (not selectedProductId and itemProduct.is_default) %}
+                {% set radioId = 'bundleRadio' ~ bundleItem.id ~ '_' ~ itemProduct.id %}
+                <div class="form-check mb-2">
+                    <input
+                        type="radio"
+                        name="bundle_items[{{ bundleItem.id }}][product_id]"
+                        value="{{ itemProduct.id }}"
+                        id="{{ radioId }}"
+                        class="form-check-input"
+                        {{ isSelected ? 'checked' }} />
+                    <label class="form-check-label" for="{{ radioId }}">
+                        {{ itemProduct.product.name }}
+                        {% if itemProduct.getEffectivePrice() > 0 %}
+                            <span class="text-success ms-1">{{ itemProduct.getEffectivePrice()|currency }}</span>
+                        {% endif %}
+                    </label>
+                </div>
+                <div class="bundle-product-parameters {{ not isSelected ? 'd-none' }}"
+                    data-bundle-params="{{ itemProduct.id }}">
+                    {% partial 'shop/bundle-product-parameters'
+                        bundleItem=bundleItem
+                        itemProduct=itemProduct
+                        bundleProduct=itemProduct.product %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% elseif bundleItem.control_type == 'checkbox' %}
+    {# -- Checkbox Control -- #}
+    <div class="bundle-checkbox-group">
+        {% for itemProduct in itemProducts %}
+            {% if itemProduct.is_active %}
+                {% set isChecked = post('bundle_items.' ~ bundleItem.id ~ '.products.' ~ itemProduct.id) or (not post('bundle_items') and itemProduct.is_default) %}
+                {% set checkId = 'bundleCheck' ~ bundleItem.id ~ '_' ~ itemProduct.id %}
+                <div class="form-check mb-2">
+                    <input
+                        type="checkbox"
+                        name="bundle_items[{{ bundleItem.id }}][products][{{ itemProduct.id }}]"
+                        value="{{ itemProduct.id }}"
+                        id="{{ checkId }}"
+                        class="form-check-input"
+                        {{ isChecked ? 'checked' }} />
+                    <label class="form-check-label" for="{{ checkId }}">
+                        {{ itemProduct.product.name }}
+                        {% if itemProduct.getEffectivePrice() > 0 %}
+                            <span class="text-success ms-1">{{ itemProduct.getEffectivePrice()|currency }}</span>
+                        {% endif %}
+                    </label>
+                </div>
+                <div class="bundle-product-parameters {{ not isChecked ? 'd-none' }}"
+                    data-bundle-params="{{ itemProduct.id }}">
+                    {% partial 'shop/bundle-product-parameters'
+                        bundleItem=bundleItem
+                        itemProduct=itemProduct
+                        bundleProduct=itemProduct.product %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

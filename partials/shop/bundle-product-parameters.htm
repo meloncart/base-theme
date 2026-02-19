@@ -1,0 +1,35 @@
+{% if itemProduct and bundleProduct %}
+<div class="bundle-product-detail mt-2 mb-3">
+    <div class="row g-2">
+        <div class="col-3">
+            {% set productImage = bundleProduct.images|first %}
+            {% if productImage %}
+                <img
+                    src="{{ productImage.getThumb(120, 120, { mode: 'crop' }) }}"
+                    alt="{{ bundleProduct.name }}"
+                    class="img-fluid rounded" />
+            {% endif %}
+        </div>
+        <div class="col-9">
+            {% if bundleProduct.options is not empty %}
+                {% partial 'shop/bundle-product-options'
+                    bundleItem=bundleItem
+                    itemProduct=itemProduct
+                    bundleProduct=bundleProduct %}
+            {% endif %}
+
+            {% if bundleProduct.extras is not empty %}
+                {% partial 'shop/bundle-product-extras'
+                    bundleItem=bundleItem
+                    itemProduct=itemProduct
+                    bundleProduct=bundleProduct %}
+            {% endif %}
+
+            {% partial 'shop/bundle-product-quantity'
+                bundleItem=bundleItem
+                itemProduct=itemProduct
+                bundleProduct=bundleProduct %}
+        </div>
+    </div>
+</div>
+{% endif %}

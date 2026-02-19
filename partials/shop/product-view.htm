@@ -32,12 +32,23 @@
             </div>
 
             <form>
-                <div class="product-options mb-3">
-                    {% partial 'shop/product-options' %}
-                </div>
-                <div class="product-extra-options mb-3">
-                    {% partial 'shop/product-extra-options' %}
-                </div>
+                <input type="hidden" name="product_baseid" value="{{ product.baseid }}" />
+
+                {% if product.bundle_items is empty %}
+                    <div class="product-options mb-3">
+                        {% partial 'shop/product-options' %}
+                    </div>
+                    <div class="product-extra-options mb-3">
+                        {% partial 'shop/product-extra-options' %}
+                    </div>
+                {% endif %}
+
+                {% if product.bundle_items is not empty %}
+                    <div id="productBundleItems" class="product-bundle-items mb-3">
+                        {% partial 'shop/bundle' %}
+                    </div>
+                {% endif %}
+
                 <div class="product-panel">
                     {% partial 'shop/add-to-cart-control' %}
                 </div>
