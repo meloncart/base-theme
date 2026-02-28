@@ -12,7 +12,7 @@
             </div>
         </div>
     </li>
-    {% set itemList = items.values() %}
+    {% set itemList = items.all() %}
     {% for item in itemList %}
         {% set product = item.product %}
         {% set isBundleChild = item.isBundleItem() %}
