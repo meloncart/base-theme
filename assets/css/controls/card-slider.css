@@ -1,40 +1,27 @@
 .control-card-slider {
     position: relative;
 
-    .slide-item {
-        position: relative;
+    /* Override slick font-based dots with CSS circles */
+    .slick-dots li button:before {
+        font-family: inherit;
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--bs-gray-800);
+        opacity: .25;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
-
-    .slide-content {
-        padding: 20px 30px 40px;
-        background-color: rgba(255,255,255,.75);
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        z-index: 3;
-
-        h1, h2, h3, h4, h5 {
-            color: var(--bs-emphasis-color);
-            margin-bottom: .25rem;
-        }
-
-        *:last-child {
-            margin-bottom: 0;
-        }
+    .slick-dots li.slick-active button:before {
+        opacity: .75;
+        background: var(--bs-gray-800);
     }
 
     &.type-hero {
-        .slide-item {
-            width: 100%;
-            height: 391px;
-            background-position: center center;
-            background-size: cover;
-            border-radius: 6px;
-        }
-
         .slick-slide {
-            margin-right: 0rem !important;
+            margin-right: 0 !important;
         }
 
         .slick-dots {
@@ -42,7 +29,7 @@
             bottom: 10px;
             display: block;
             li {
-                margin: 0rem;
+                margin: 0;
             }
         }
     }

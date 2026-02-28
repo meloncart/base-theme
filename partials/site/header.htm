@@ -3,35 +3,31 @@
 ==
 <div class="border-bottom">
     <!-- Top Banner -->
-    {% if backendUrl or sitePicker.isEnabled %}
-        <div id="layout-banner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-12 text-center text-md-start">
-                        {# Feel free to replace this with anything you like #}
-                    </div>
-                    <div class="col-4 text-end d-none d-md-block">
-                        <div>
-                            {% if backendUrl %}
-                                <a class="text-reset text-decoration-none me-3" href="{{ backendUrl }}" target="backend"><i class="bi bi-gear-wide-connected"></i> Admin Panel</a>
-                            {% endif %}
-                            {% if sitePicker.isEnabled %}
-                                <a class="text-decoration-none text-reset dropdown-toggle" href="{{ ''|page }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% partial 'site/helpers/flag-icon' %}
-                                    {{ this.site.name|default('Sites') }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    {% for site in sitePicker.sites %}
-                                        <li><a class="dropdown-item text-decoration-none {{ this.site.code == site.code ? 'active' }}" href="{{ site.url }}">{{ site.name }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </div>
-                    </div>
+    <div id="layout-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-12 text-center text-md-start">
+                    <span>Super Savings - Save more with coupons!</span>
+                </div>
+                <div class="col-6 text-end d-none d-md-block">
+                    {% if backendUrl %}
+                        <a class="text-reset text-decoration-none me-3" href="{{ backendUrl }}" target="backend"><i class="bi bi-gear-wide-connected"></i> Admin Panel</a>
+                    {% endif %}
+                    {% if sitePicker.isEnabled %}
+                        <a class="text-decoration-none text-reset dropdown-toggle" href="{{ ''|page }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% partial 'site/helpers/flag-icon' %}
+                            {{ this.site.name|default('Sites') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for site in sitePicker.sites %}
+                                <li><a class="dropdown-item text-decoration-none {{ this.site.code == site.code ? 'active' }}" href="{{ site.url }}">{{ site.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    {% endif %}
+    </div>
 
     {% placeholder headerBefore %}
 
