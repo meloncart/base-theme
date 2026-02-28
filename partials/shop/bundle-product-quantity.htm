@@ -5,7 +5,7 @@
 <div class="bundle-product-quantity d-flex align-items-center justify-content-between mt-2">
     <div>
         {% if itemProduct.allow_manual_quantity %}
-            {% partial 'shop/quantity-input' name=controlName value=currentQty cssClass='input-group-sm' %}
+            {% partial 'ui/quantity-input' name=controlName value=currentQty class='input-group-sm' %}
         {% else %}
             <span class="small text-muted">Qty: {{ currentQty }}</span>
         {% endif %}

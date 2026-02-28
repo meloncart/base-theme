@@ -1,0 +1,31 @@
+{% props {
+    name: null,
+    value: 1,
+    min: 1,
+    max: 10,
+    minusClass: null,
+    plusClass: null
+} %}
+<div
+    data-control="quantity-input"
+    {{ attributes.merge({class: 'input-group control-quantity-input'}) }}
+>
+    <button
+        type="button"
+        {{ attributes.only([]).class(['btn btn-sm button-minus', minusClass]) }}>
+        -
+    </button>
+    <input
+        class="quantity-field form-input form-control-sm"
+        type="number"
+        step="1"
+        min="{{ min }}"
+        max="{{ max }}"
+        name="{{ name }}"
+        value="{{ value }}" />
+    <button
+        type="button"
+        {{ attributes.only([]).class(['btn btn-sm button-plus', plusClass]) }}>
+        +
+    </button>
+</div>

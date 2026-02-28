@@ -56,11 +56,11 @@
                             {{ item.quantity }}
                         </div>
                     {% else %}
-                        {% partial 'shop/quantity-input'
+                        {% partial 'ui/quantity-input'
                             name='item_quantity[' ~ item.key ~ ']'
                             value=item.quantity
-                            minusCssClass='ms-auto'
-                            plusCssClass='me-auto'
+                            minusClass='ms-auto'
+                            plusClass='me-auto'
                         %}
                         <div class="mt-2 small text-center">
                             <a
