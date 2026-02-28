@@ -1,66 +1,178 @@
+[catalog]
+==
 <div class="element-footer">
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-lg-6 col-xl-5">
-                <div class="footer-nav">
-                    <div class="row gx-0">
-                        <div class="col-md-4 mb-3">
+        <!-- Link Columns -->
+        <div class="row g-4 py-4">
+            <!-- Categories -->
+            <div class="col-12 col-lg-4">
+                <h6 class="mb-4">
+                    Categories
+                </h6>
+                {% set categories = catalog.allCategories %}
+                {% if categories %}
+                    <div class="row">
+                        {% set midpoint = (categories|length / 2)|round(0, 'ceil') %}
+                        <div class="col-6">
                             <ul class="nav flex-column">
-                                <li class="nav-item nav-item-header">
-                                    <a class="nav-link" href="{{ 'index'|page }}">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ 'shop/index'|page }}">Shop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ 'account/index'|page }}">Account</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ 'contact'|page }}">Contact</a>
-                                </li>
+                                {% for category in categories|slice(0, midpoint) %}
+                                    <li class="nav-item mb-2">
+                                        <a href="{{ 'shop/category'|page({ slug: category.slug }) }}" class="nav-link">
+                                            {{ category.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </div>
-                        <div class="col-md-4 mb-3">
-
+                        <div class="col-6">
+                            <ul class="nav flex-column">
+                                {% for category in categories|slice(midpoint) %}
+                                    <li class="nav-item mb-2">
+                                        <a href="{{ 'shop/category'|page({ slug: category.slug }) }}" class="nav-link">
+                                            {{ category.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
-                        <div class="col-md-4 mb-3">
+                    </div>
+                {% endif %}
+            </div>
 
-                        </div>
+            <!-- Link Columns -->
+            <div class="col-12 col-lg-8">
+                <div class="row g-4">
+                    <div class="col-6 col-md-3">
+                        <h6 class="mb-4">
+                            Get to Know Us
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2">
+                                <a href="{{ 'index'|page }}" class="nav-link">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{{ 'shop/index'|page }}" class="nav-link">
+                                    Shop
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{{ 'contact'|page }}" class="nav-link">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 class="mb-4">
+                            For Consumers
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2">
+                                <a href="{{ 'account/index'|page }}" class="nav-link">
+                                    Account
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{{ 'shop/cart'|page }}" class="nav-link">
+                                    Cart
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 class="mb-4">
+                            Company
+                        </h6>
+                        <ul class="nav flex-column">
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 class="mb-4">
+                            Resources
+                        </h6>
+                        <ul class="nav flex-column">
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="footer-social">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="https://dribbble.com/" target="_blank">
-                                <img src="{{ 'assets/images/social-icons-white/dribbble-white.png'|theme }}" alt="Dribbble"  />
+
+        <!-- Payment Partners & App Buttons -->
+        <div class="border-top py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-lg-start text-center mb-2 mb-lg-0">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item text-dark">
+                            Payment Partners
+                        </li>
+                        <li class="list-inline-item">
+                            <img src="{{ 'assets/images/payment/amazonpay.svg'|theme }}" alt="Amazon Pay">
+                        </li>
+                        <li class="list-inline-item">
+                            <img src="{{ 'assets/images/payment/american-express.svg'|theme }}" alt="American Express">
+                        </li>
+                        <li class="list-inline-item">
+                            <img src="{{ 'assets/images/payment/mastercard.svg'|theme }}" alt="Mastercard">
+                        </li>
+                        <li class="list-inline-item">
+                            <img src="{{ 'assets/images/payment/paypal.svg'|theme }}" alt="PayPal">
+                        </li>
+                        <li class="list-inline-item">
+                            <img src="{{ 'assets/images/payment/visa.svg'|theme }}" alt="Visa">
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-7 mt-4 mt-md-0">
+                    <ul class="list-inline mb-0 text-lg-end text-center">
+                        <li class="list-inline-item mb-2 mb-md-0 text-dark">
+                            Get deliveries with Meloncart
+                        </li>
+                        <li class="list-inline-item ms-4">
+                            <a href="#!">
+                                <img src="{{ 'assets/images/appbutton/appstore-btn.svg'|theme }}" alt="App Store" style="width: 140px;">
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="https://www.linkedin.com/company/october-cms/" target="_blank">
-                                <img src="{{ 'assets/images/social-icons-white/linkedin-white.png'|theme }}" alt="LinkedIn"  />
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="https://twitter.com/octobercms" target="_blank">
-                                <img src="{{ 'assets/images/social-icons-white/twitter-white.png'|theme }}" alt="Twitter" />
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="https://www.facebook.com/octobercms" target="_blank">
-                                <img src="{{ 'assets/images/social-icons-white/facebook-white.png'|theme }}" alt="Facebook" />
+                        <li class="list-inline-item">
+                            <a href="#!">
+                                <img src="{{ 'assets/images/appbutton/googleplay-btn.svg'|theme }}" alt="Google Play" style="width: 140px;">
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="footer-copyright">
-                    <p>&copy; {{ "now"|date("Y") }} Your Company Name</p>
-                    <p>All rights reserved</p>
+        </div>
+
+        <!-- Copyright & Social -->
+        <div class="border-top py-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <span class="small text-muted">
+                        &copy; {{ "now"|date("Y") }} Your Company Name. All rights reserved.
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-inline text-md-end mb-0 small mt-3 mt-md-0">
+                        <li class="list-inline-item text-muted">
+                            Follow us on
+                        </li>
+                        <li class="list-inline-item me-1">
+                            <a href="#!" class="btn btn-xs btn-social btn-icon">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item me-1">
+                            <a href="#!" class="btn btn-xs btn-social btn-icon">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#!" class="btn btn-xs btn-social btn-icon">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

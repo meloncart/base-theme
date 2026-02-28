@@ -62,6 +62,10 @@ h6, .h6 {
     }
 }
 
+.bg-light {
+    background-color: #f0f3f2 !important;
+}
+
 /* Extended spacers */
 .mt-8 { margin-top: 2rem !important; }
 .mb-8 { margin-bottom: 2rem !important; }

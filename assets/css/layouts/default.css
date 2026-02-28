@@ -5,7 +5,7 @@
     font-size: .875rem;
     padding: .3rem 0;
     color: #5c6c75;
-    background-color: var(--bs-gray-100);
+    background-color: #f0f3f2;
 }
 
 #layout-header {
@@ -32,6 +32,10 @@
     header {
         padding: 0 0 30px 0;
     }
+}
+
+#layout-footer {
+    padding-top: 2rem;
 }
 
 ul.list-with-ticks {
