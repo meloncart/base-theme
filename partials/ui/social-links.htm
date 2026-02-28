@@ -1,16 +1,20 @@
-<div class="element-social-links">
+{% props {
+    links: [],
+    showRssLink: false
+} %}
+<div {{ attributes.merge({class: 'element-social-links'}) }}>
     <ul class="nav">
-        {% for link in links|default([]) %}
+        {% for link in links %}
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{ link.url }}" target="_blank" rel="nofollow">
-                    <img src="{{ ('assets/images/social-icons/' ~ link.platform ~ '.png')|theme }}" alt="Dribbble"  />
+                    <img src="{{ ('assets/images/social-icons/' ~ link.platform ~ '.png')|theme }}" alt="{{ link.platform }}" />
                 </a>
             </li>
         {% endfor %}
-        {% if showRssLink|default(false) %}
+        {% if showRssLink %}
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{ 'blog/rss'|page }}" target="_blank">
-                    <img src="{{ ('assets/images/social-icons/rss.png')|theme }}" alt="RSS Feed"  />
+                    <img src="{{ ('assets/images/social-icons/rss.png')|theme }}" alt="RSS Feed" />
                 </a>
             </li>
         {% endif %}

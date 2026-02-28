@@ -1,8 +1,11 @@
+{% props {
+    gallery: null,
+    width: 640,
+    height: 640
+} %}
 {% set galleryId = 'carousel' ~ random() %}
-{% set width = width|default(640) %}
-{% set height = height|default(640) %}
 
-<div data-control="gallery-slider" class="control-gallery-slider" id="{{ galleryId }}">
+<div data-control="gallery-slider" {{ attributes.merge({class: 'control-gallery-slider'}) }} id="{{ galleryId }}">
     {% if gallery %}
         {% for image in gallery %}
             <div>
