@@ -1,15 +1,10 @@
 [cart]
 ==
-<a href="{{ 'shop/cart'|page }}" class="text-reset text-decoration-none">
-    <div class="text-center">
-        <div class="position-relative d-inline-block mb-xl-2">
-            <i class="bi bi-cart2 fs-4"></i>
-            {% if cart.totalItems %}
-                <span class="translate-middle badge rounded-pill bg-danger">
-                    {{ cart.totalItems }}
-                </span>
-            {% endif %}
-        </div>
-        <p class="mb-0 d-none d-xl-block small label">Shopping Cart</p>
-    </div>
+<a href="{{ 'shop/cart'|page }}" class="text-muted position-relative">
+    <i class="bi bi-bag fs-4"></i>
+    {% if cart.totalItems %}
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+            {{ cart.totalItems }}
+        </span>
+    {% endif %}
 </a>

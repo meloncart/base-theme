@@ -5,42 +5,20 @@
     font-size: .875rem;
     padding: .3rem 0;
     color: #5c6c75;
+    background-color: var(--bs-gray-100);
 }
 
 #layout-header {
     background: white;
+    padding: 1.5rem 0;
 
     .navbar-brand {
-        padding: 1.5rem 0;
-    }
-
-    > .container > .row {
-        min-height: 42px;
-    }
-
-    .header-toolbar-search {
-        max-width: 275px;
-    }
-
-    .header-toolbar-item {
-        line-height: 1;
-        .badge {
-            position: absolute;
-            top: 0;
-            left: 120%;
-        }
+        padding: 0;
     }
 }
 
 #layout-nav {
-    height: 65px;
-    background: linear-gradient(102.01deg, #0aad0a 0.3%, #099309 106.31%);
-    padding: 0 15px;
-
-    > .navbar-container {
-        position: relative;
-        z-index: 2;
-    }
+    background: white;
 }
 
 #layout-content {

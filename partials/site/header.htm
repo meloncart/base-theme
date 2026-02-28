@@ -1,79 +1,107 @@
 [backendLink]
 [sitePicker]
 ==
-<div id="layout-banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-12 text-center text-md-start">
-                {# Feel free to replace this with anything you like #}
-            </div>
-            <div class="col-4 text-end d-none d-md-block">
-                <div>
-                    {% if backendUrl %}
-                        <a class="text-reset text-decoration-none me-3" href="{{ backendUrl }}" target="backend"><i class="bi bi-gear-wide-connected"></i> Admin Panel</a>
-                    {% endif %}
-                    {% if sitePicker.isEnabled %}
-                        <a class="text-decoration-none text-reset dropdown-toggle" href="{{ ''|page }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {% partial 'site/helpers/flag-icon' %}
-                            {{ this.site.name|default('Sites') }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% for site in sitePicker.sites %}
-                                <li><a class="dropdown-item text-decoration-none {{ this.site.code == site.code ? 'active' }}" href="{{ site.url }}">{{ site.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+<div class="border-bottom">
+    <!-- Top Banner -->
+    {% if backendUrl or sitePicker.isEnabled %}
+        <div id="layout-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-12 text-center text-md-start">
+                        {# Feel free to replace this with anything you like #}
+                    </div>
+                    <div class="col-4 text-end d-none d-md-block">
+                        <div>
+                            {% if backendUrl %}
+                                <a class="text-reset text-decoration-none me-3" href="{{ backendUrl }}" target="backend"><i class="bi bi-gear-wide-connected"></i> Admin Panel</a>
+                            {% endif %}
+                            {% if sitePicker.isEnabled %}
+                                <a class="text-decoration-none text-reset dropdown-toggle" href="{{ ''|page }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {% partial 'site/helpers/flag-icon' %}
+                                    {{ this.site.name|default('Sites') }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {% for site in sitePicker.sites %}
+                                        <li><a class="dropdown-item text-decoration-none {{ this.site.code == site.code ? 'active' }}" href="{{ site.url }}">{{ site.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{% placeholder headerBefore %}
-<header id="layout-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-xxl-3 col-lg-4 d-flex align-items-center">
-                <a class="navbar-brand" href="{{ 'index'|page }}">
-                    <img src="{{ 'assets/images/logo.svg'|theme }}" alt="Meloncart" height="35" />
-                </a>
-            </div>
-            <div class="col-xxl-9 col-lg-8">
+    {% endif %}
 
-                <!-- Header Toolbar -->
-                <div class="d-flex align-items-center justify-content-end h-100">
-                    <div>
+    {% placeholder headerBefore %}
+
+    <!-- Header: Logo, Search, Icons -->
+    <header id="layout-header">
+        <div class="container">
+            <div class="row w-100 align-items-center gx-lg-2 gx-0">
+                <div class="col-xxl-2 col-lg-3">
+                    <a class="navbar-brand d-none d-lg-block" href="{{ 'index'|page }}">
+                        <img src="{{ 'assets/images/logo.svg'|theme }}" alt="Meloncart" height="35" />
+                    </a>
+                    <div class="d-flex justify-content-between w-100 d-lg-none">
+                        <a class="navbar-brand" href="{{ 'index'|page }}">
+                            <img src="{{ 'assets/images/logo.svg'|theme }}" alt="Meloncart" height="35" />
+                        </a>
+                        <div class="d-flex align-items-center lh-1">
+                            <div class="list-inline me-4">
+                                <div class="list-inline-item">
+                                    <a href="{{ 'account/index'|page }}" class="text-muted">
+                                        <i class="bi bi-person fs-4"></i>
+                                    </a>
+                                </div>
+                                <div class="list-inline-item" id="miniCartMobile" data-turbo-permanent>
+                                    {% partial 'shop/mini-cart' %}
+                                </div>
+                            </div>
+                            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-label="Toggle navigation">
+                                <i class="bi bi-list fs-2 text-primary"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-7 col-lg-5 d-none d-lg-block">
+                    {% partial 'site/nav-search' %}
+                </div>
+                <div class="col-xxl-3 col-lg-4 text-end d-none d-lg-block">
+                    <div class="list-inline">
+                        <div class="list-inline-item me-5">
+                            <a href="{{ 'account/index'|page }}" class="text-muted position-relative">
+                                <i class="bi bi-person fs-4"></i>
+                            </a>
+                        </div>
+                        <div class="list-inline-item" id="miniCart" data-turbo-permanent>
+                            {% partial 'shop/mini-cart' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nav -->
+    <nav id="layout-nav" class="navbar navbar-expand-lg navbar-light py-0 py-lg-2" aria-label="Main navigation">
+        <div class="container">
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="navbar-default" aria-labelledby="navbar-defaultLabel">
+                <div class="offcanvas-header pb-1">
+                    <a href="{{ 'index'|page }}"><img src="{{ 'assets/images/logo.svg'|theme }}" alt="Meloncart" height="35" /></a>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="d-block d-lg-none mb-4">
                         {% partial 'site/nav-search' %}
                     </div>
-                    <div class="text-center ms-4 header-toolbar-item">
-                        <a href="{{ 'account/index'|page }}" class="text-reset text-decoration-none">
-                            <div class="text-center">
-                                <div class="d-inline-block mb-xl-2">
-                                    <i class="bi bi-person fs-4"></i>
-                                </div>
-                                <p class="mb-0 d-none d-xl-block small">My Account</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="text-center ms-4 header-toolbar-item position-relative" id="miniCart" data-turbo-permanent>
-                        {% partial 'shop/mini-cart' %}
-                    </div>
+                    <ul class="navbar-nav">
+                        {% partial 'site/nav-links' %}
+                    </ul>
                 </div>
-
             </div>
         </div>
-    </div>
-</header>
-<!-- Nav -->
-<nav id="layout-nav" class="navbar navbar-expand-lg navbar-dark">
-    <div class="navbar-container container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% partial 'site/nav-links' %}
-            </ul>
-        </div>
-    </div>
-</nav>
-{% placeholder headerAfter %}
+    </nav>
+
+    {% placeholder headerAfter %}
+</div>
