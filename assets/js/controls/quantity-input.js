@@ -1,36 +1,48 @@
-;(function(){
+oc.registerControl('quantity-input', class extends oc.ControlBase {
+    connect() {
+        this.$qty = this.element.querySelector('input.quantity-field');
+        this.listen('click', '.button-plus', this.onIncrementValue);
+        this.listen('click', '.button-minus', this.onDecrementValue);
+    }
 
-    oc.registerControl('quantity-input', class extends oc.ControlBase {
-        connect() {
-            this.$qty = this.element.querySelector('input.quantity-field');
-            this.listen('click', '.button-plus', this.onIncrementValue);
-            this.listen('click', '.button-minus', this.onDecrementValue);
+    disconnect() {
+        this.$qty = null;
+    }
+
+    onIncrementValue(ev) {
+        ev.preventDefault();
+        var value = parseInt(this.$qty.value, 10);
+        if (isNaN(value)) {
+            value = 0;
         }
 
-        disconnect() {
-            this.$qty = null;
+        var max = parseInt(this.$qty.max, 10);
+        value++;
+
+        if (!isNaN(max) && value > max) {
+            value = max;
         }
 
-        onIncrementValue(ev) {
-            ev.preventDefault();
-            var value = parseInt(this.$qty.value, 10);
-            if (isNaN(value)) {
-                value = 0;
-            }
+        this.$qty.value = value;
+    }
 
-            this.$qty.value = Math.max(++value, 0);
+    onDecrementValue(ev) {
+        ev.preventDefault();
+        var value = parseInt(this.$qty.value, 10);
+        if (isNaN(value)) {
+            value = 0;
         }
 
-        onDecrementValue(ev) {
-            ev.preventDefault();
-            var value = parseInt(this.$qty.value, 10);
-            if (isNaN(value)) {
-                value = 0;
-            }
+        var min = parseInt(this.$qty.min, 10);
+        value--;
 
-            this.$qty.value = Math.max(--value, 0);
+        if (!isNaN(min)) {
+            value = Math.max(value, min);
+        }
+        else {
+            value = Math.max(value, 0);
         }
 
-    });
-
-})();
+        this.$qty.value = value;
+    }
+});

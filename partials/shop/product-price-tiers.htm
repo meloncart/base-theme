@@ -1,0 +1,24 @@
+{% set visibleTiers = product.visible_price_tiers %}
+{% if visibleTiers is not empty %}
+    <h4 class="my-4">Volume Pricing</h4>
+    <table class="table table-striped m-0 mb-4 w-auto">
+        <thead>
+            <tr>
+                <th class="p-3">Quantity</th>
+                <th class="p-3">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="p-3">1+</td>
+                <td class="p-3">{{ product.final_price|currency }}</td>
+            </tr>
+            {% for tier in visibleTiers %}
+                <tr>
+                    <td class="p-3">{{ tier.quantity_label }}</td>
+                    <td class="p-3">{{ tier.price|currency }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

@@ -14,18 +14,7 @@
             </td>
             <td class="cart-symbol">x</td>
             <td class="quantity-controls">
-                <div data-control="quantity-input" class="input-group control-quantity-input">
-                    <input type="button" value="-" class="btn btn-sm button-minus" />
-                    <input
-                        class="quantity-field form-input form-control-sm"
-                        type="number"
-                        step="1"
-                        min="1"
-                        max="10"
-                        name="product_cart_quantity"
-                        value="{{ post('product_cart_quantity', 1) }}" />
-                    <input type="button" value="+" class="btn btn-sm button-plus" />
-                </div>
+                {% partial 'shop/quantity-input' name='product_cart_quantity' value=post('product_cart_quantity', 1) %}
             </td>
             <td class="add-button">
                 <button

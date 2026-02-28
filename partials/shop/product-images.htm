@@ -20,7 +20,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="slider-nav {{ images.count == 1 ? 'd-none' }}" data-slider-thumbs>
+        <div class="slider-nav d-none {{ images.count == 1 ? '' : 'd-md-block' }}" data-slider-thumbs>
             {% for image in images %}
                 <div class="image-container">
                     <img src="{{ image.path }}" alt="" class="w-100 rounded" />

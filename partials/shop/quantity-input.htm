@@ -1,0 +1,15 @@
+<div
+    data-control="quantity-input"
+    class="input-group {{ cssClass|default('') }} control-quantity-input"
+>
+    <button type="button" class="btn btn-sm button-minus {{ minusCssClass|default('') }}">-</button>
+    <input
+        class="quantity-field form-input form-control-sm"
+        type="number"
+        step="1"
+        min="{{ min|default(1) }}"
+        max="{{ max|default(10) }}"
+        name="{{ name }}"
+        value="{{ value|default(1) }}" />
+    <button type="button" class="btn btn-sm button-plus {{ plusCssClass|default('') }}">+</button>
+</div>

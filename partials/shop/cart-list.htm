@@ -56,18 +56,12 @@
                             {{ item.quantity }}
                         </div>
                     {% else %}
-                        <div data-control="quantity-input" class="input-group control-quantity-input">
-                            <input type="button" value="-" class="btn btn-sm button-minus ms-auto" />
-                            <input
-                                class="quantity-field form-input form-control-sm"
-                                type="number"
-                                step="1"
-                                min="1"
-                                max="10"
-                                name="item_quantity[{{ item.key }}]"
-                                value="{{ item.quantity }}" />
-                            <input type="button" value="+" class="btn btn-sm button-plus me-auto" />
-                        </div>
+                        {% partial 'shop/quantity-input'
+                            name='item_quantity[' ~ item.key ~ ']'
+                            value=item.quantity
+                            minusCssClass='ms-auto'
+                            plusCssClass='me-auto'
+                        %}
                         <div class="mt-2 small text-center">
                             <a
                                 href="javascript:;"
