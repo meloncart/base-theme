@@ -1,0 +1,15 @@
+{% props {
+    rating: 0,
+    max: 5
+} %}
+<span {{ attributes.merge({class: 'text-warning'}) }}>
+    {% for i in 1..max %}
+        {% if rating >= i %}
+            <i class="bi bi-star-fill"></i>
+        {% elseif rating >= (i - 0.5) %}
+            <i class="bi bi-star-half"></i>
+        {% else %}
+            <i class="bi bi-star"></i>
+        {% endif %}
+    {% endfor %}
+</span>

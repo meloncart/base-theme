@@ -17,7 +17,7 @@
                             <ul class="nav flex-column">
                                 {% for category in categories|slice(0, midpoint) %}
                                     <li class="nav-item mb-2">
-                                        <a href="{{ 'shop/category'|page({ slug: category.slug }) }}" class="nav-link">
+                                        <a href="{{ 'shop/category'|page({ fullslug: category.fullslug }) }}" class="nav-link">
                                             {{ category.name }}
                                         </a>
                                     </li>
@@ -28,7 +28,7 @@
                             <ul class="nav flex-column">
                                 {% for category in categories|slice(midpoint) %}
                                     <li class="nav-item mb-2">
-                                        <a href="{{ 'shop/category'|page({ slug: category.slug }) }}" class="nav-link">
+                                        <a href="{{ 'shop/category'|page({ fullslug: category.fullslug }) }}" class="nav-link">
                                             {{ category.name }}
                                         </a>
                                     </li>

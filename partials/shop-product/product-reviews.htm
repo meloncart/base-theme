@@ -11,17 +11,7 @@
                 </h4>
                 {% if totalReviews > 0 %}
                     <span>
-                        <small class="text-warning">
-                            {% for i in 1..5 %}
-                                {% if avgRating >= i %}
-                                    <i class="bi bi-star-fill"></i>
-                                {% elseif avgRating >= (i - 0.5) %}
-                                    <i class="bi bi-star-half"></i>
-                                {% else %}
-                                    <i class="bi bi-star"></i>
-                                {% endif %}
-                            {% endfor %}
-                        </small>
+                        {% partial 'ui/star-rating-display' rating=avgRating class="small" %}
                         <span class="ms-3">
                             {{ avgRating|number_format(1) }} out of 5
                         </span>
@@ -126,15 +116,7 @@
                                 {% endif %}
                             </p>
                             <div class="mb-2">
-                                <small class="text-warning">
-                                    {% for i in 1..5 %}
-                                        {% if review.rating >= i %}
-                                            <i class="bi bi-star-fill"></i>
-                                        {% else %}
-                                            <i class="bi bi-star"></i>
-                                        {% endif %}
-                                    {% endfor %}
-                                </small>
+                                {% partial 'ui/star-rating-display' rating=review.rating class="small" %}
                                 {% if review.title %}
                                     <span class="ms-3 text-dark fw-bold">
                                         {{ review.title }}
