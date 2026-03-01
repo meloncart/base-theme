@@ -1,14 +1,22 @@
-<div class="mb-8">
+<div
+    data-control="price-slider"
+    data-config-min="6"
+    data-config-max="300"
+    data-config-start-min="49"
+    data-config-start-max="199"
+    data-config-prefix="$"
+    class="mb-8"
+>
     <h5 class="mb-3">
         Price
     </h5>
     <div>
-        <div id="priceRange" class="mb-3"></div>
+        <div data-price-range-slider class="mb-3"></div>
         <small class="text-muted">
             Price:
         </small>
-        <span id="priceRange-value" class="small">
-            $0 - $1,000
-        </span>
+        <span data-price-range-text class="small"></span>
+        <input type="hidden" name="price_min" value="49">
+        <input type="hidden" name="price_max" value="199">
     </div>
 </div>

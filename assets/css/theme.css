@@ -9,6 +9,7 @@
 @import "controls/gallery-slider.css";
 @import "controls/card-slider.css";
 @import "controls/quantity-input.css";
+@import "controls/price-slider.css";
 
 /* Elements */
 @import "elements/animations.css";
