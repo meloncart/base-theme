@@ -1,12 +1,14 @@
 <div class="card card-product mb-3">
     <div class="card-body text-center">
-        {% if category.images is not empty %}
-            <img class="mb-3 img-fluid" src="{{ category.images.first|resize(0, 120, { mode: 'auto' }) }}" />
-        {% elseif category.products is not empty and category.products.first.images is not empty %}
-            <img class="mb-3 img-fluid" src="{{ category.products.first.images.first|resize(0, 120, { mode: 'auto' }) }}" />
-        {% else %}
-            <img class="mb-3 img-fluid" src="{{ 'assets/images/default-post.png'|theme }}" />
-        {% endif %}
+        <div class="card-category-img mb-3">
+            {% if category.images is not empty %}
+                <img src="{{ category.images.first|resize(0, 120, { mode: 'auto' }) }}" />
+            {% elseif category.products is not empty and category.products.first.images is not empty %}
+                <img src="{{ category.products.first.images.first|resize(0, 120, { mode: 'auto' }) }}" />
+            {% else %}
+                <img src="{{ 'assets/images/default-post.png'|theme }}" />
+            {% endif %}
+        </div>
         <div class="text-truncate">
             <a href="{{ category.pageUrl('shop/category') }}" class="stretched-link text-inherit text-decoration-none">
                 {{ category.name }}

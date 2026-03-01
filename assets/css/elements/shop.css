@@ -64,3 +64,9 @@
     border-left: 3px solid var(--bs-primary);
     background-color: var(--bs-gray-100) !important;
 }
+
+/* Review Avatar */
+.avatar-lg {
+    width: 48px;
+    height: 48px;
+}

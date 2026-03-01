@@ -100,3 +100,16 @@
         border: 1px solid var(--bs-primary);
     }
 }
+
+.card-category-img {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+}

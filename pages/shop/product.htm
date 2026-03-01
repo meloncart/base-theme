@@ -9,6 +9,9 @@ meta_title = "{{ product.name }}"
 lookup = "product"
 identifier = "baseid"
 
+[reviews]
+productId = "{{ :baseid }}"
+
 [resources]
 module[] = "pages/product.js"
 vars[activeNavLink] = 'shop'

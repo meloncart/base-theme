@@ -10,6 +10,7 @@
 @import "controls/card-slider.css";
 @import "controls/quantity-input.css";
 @import "controls/price-slider.css";
+@import "controls/star-rating.css";
 
 /* Elements */
 @import "elements/animations.css";

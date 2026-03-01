@@ -5,6 +5,7 @@ import registerCardSlider from './controls/card-slider.js';
 import registerQuantityInput from './controls/quantity-input.js';
 import registerCheckoutForm from './controls/checkout-form.js';
 import registerPriceSlider from './controls/price-slider.js';
+import registerStarRating from './controls/star-rating.js';
 
 // Register controls
 registerAlertDialog();
@@ -14,6 +15,7 @@ registerCardSlider();
 registerQuantityInput();
 registerCheckoutForm();
 registerPriceSlider();
+registerStarRating();
 
 addEventListener('render', function() {
     // Auto Collapsed List

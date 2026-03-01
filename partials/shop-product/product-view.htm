@@ -93,6 +93,8 @@
     </div>
 </div>
 
+{% set hasInfo = product.properties is not empty or product.weight or product.height or product.width or product.depth or product.visible_price_tiers is not empty %}
+
 <div>
     <ul class="nav nav-pills nav-line-pills" id="productTabs">
         <li class="nav-item">
@@ -100,9 +102,21 @@
                 Product Description
             </button>
         </li>
+        {% if hasInfo %}
+            <li class="nav-item">
+                <button class="nav-link" id="infoTab" data-bs-toggle="tab" data-bs-target="#infoTabPane" type="button">
+                    Information
+                </button>
+            </li>
+        {% endif %}
         <li class="nav-item">
-            <button class="nav-link" id="infoTab" data-bs-toggle="tab" data-bs-target="#infoTabPane" type="button">
-                Information
+            <button class="nav-link" id="reviewsTab" data-bs-toggle="tab" data-bs-target="#reviewsTabPane" type="button">
+                Reviews
+                {% if reviews.reviewsCount > 0 %}
+                    <span class="badge bg-primary ms-1">
+                        {{ reviews.reviewsCount }}
+                    </span>
+                {% endif %}
             </button>
         </li>
     </ul>
@@ -117,9 +131,16 @@
                 {% endif %}
             </div>
         </div>
-        <div class="tab-pane fade" id="infoTabPane" tabindex="0">
-            {% partial 'shop-product/product-attributes' %}
-            {% partial 'shop-product/product-price-tiers' %}
+        {% if hasInfo %}
+            <div class="tab-pane fade" id="infoTabPane" tabindex="0">
+                {% partial 'shop-product/product-attributes' %}
+                {% partial 'shop-product/product-price-tiers' %}
+            </div>
+        {% endif %}
+        <div class="tab-pane fade" id="reviewsTabPane" tabindex="0">
+            <div class="py-8">
+                {% partial 'shop-product/product-reviews' %}
+            </div>
         </div>
     </div>
 </div>

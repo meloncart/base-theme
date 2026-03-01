@@ -1,0 +1,167 @@
+{% set reviewsList = reviews.listReviews %}
+{% set avgRating = reviews.averageRating %}
+{% set totalReviews = reviews.reviewsCount %}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="me-lg-5 mb-6 mb-md-0">
+            <div class="mb-5">
+                <h4 class="mb-3">
+                    Customer Reviews
+                </h4>
+                {% if totalReviews > 0 %}
+                    <span>
+                        <small class="text-warning">
+                            {% for i in 1..5 %}
+                                {% if avgRating >= i %}
+                                    <i class="bi bi-star-fill"></i>
+                                {% elseif avgRating >= (i - 0.5) %}
+                                    <i class="bi bi-star-half"></i>
+                                {% else %}
+                                    <i class="bi bi-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </small>
+                        <span class="ms-3">
+                            {{ avgRating|number_format(1) }} out of 5
+                        </span>
+                        <small class="ms-3">
+                            {{ totalReviews }} {{ totalReviews == 1 ? 'review' : 'reviews' }}
+                        </small>
+                    </span>
+                {% else %}
+                    <p class="text-muted mb-0">
+                        No reviews yet.
+                    </p>
+                {% endif %}
+            </div>
+
+            {% if totalReviews > 0 %}
+                <div class="mb-8">
+                    {% for star in 5..1 %}
+                        {% set starCount = 0 %}
+                        {% for review in reviewsList %}
+                            {% if review.rating == star %}
+                                {% set starCount = starCount + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        {% set percent = totalReviews > 0 ? ((starCount / totalReviews) * 100)|round : 0 %}
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="text-nowrap me-3 text-muted">
+                                <span class="d-inline-block align-middle text-muted">
+                                    {{ star }}
+                                </span>
+                                <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                            </div>
+                            <div class="w-100">
+                                <div class="progress" style="height: 6px;">
+                                    <div
+                                        class="progress-bar bg-warning"
+                                        role="progressbar"
+                                        style="width: {{ percent }}%;"
+                                        aria-valuenow="{{ percent }}"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-muted ms-3">
+                                {{ percent }}%
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if reviews.canReview %}
+                <div class="d-grid">
+                    <h4>
+                        Review this product
+                    </h4>
+                    <p class="mb-0">
+                        Share your thoughts with other customers.
+                    </p>
+                    <a href="#reviewForm" class="btn btn-outline-secondary mt-4">
+                        Write a Review
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        {% if reviewsList is not empty %}
+            <div class="mb-10">
+                <div class="mb-8">
+                    <h4>
+                        Reviews
+                    </h4>
+                </div>
+                {% for review in reviewsList %}
+                    <div class="d-flex border-bottom pb-6 mb-6 {{ not loop.first ? 'pt-4' }}">
+                        <div class="flex-shrink-0">
+                            {% if review.user and review.user.avatar %}
+                                <img
+                                    src="{{ review.user.avatar.thumb(64, 64, { mode: 'crop' }) }}"
+                                    alt="{{ review.user.name }}"
+                                    class="rounded-circle avatar-lg" />
+                            {% else %}
+                                <div class="rounded-circle avatar-lg bg-light d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-person fs-4 text-muted"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="ms-3 flex-grow-1">
+                            <h6 class="mb-1">
+                                {{ review.user ? review.user.full_name : 'Anonymous' }}
+                            </h6>
+                            <p class="small">
+                                <span class="text-muted">
+                                    {{ review.created_at|date('d F Y') }}
+                                </span>
+                                {% if review.is_verified_purchase %}
+                                    <span class="text-primary ms-3 fw-bold">
+                                        Verified Purchase
+                                    </span>
+                                {% endif %}
+                            </p>
+                            <div class="mb-2">
+                                <small class="text-warning">
+                                    {% for i in 1..5 %}
+                                        {% if review.rating >= i %}
+                                            <i class="bi bi-star-fill"></i>
+                                        {% else %}
+                                            <i class="bi bi-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </small>
+                                {% if review.title %}
+                                    <span class="ms-3 text-dark fw-bold">
+                                        {{ review.title }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                            <p>
+                                {{ review.content }}
+                            </p>
+                            <div class="d-flex justify-content-end my-3" id="reviewVote{{ review.id }}">
+                                {% partial 'shop-product/product-reviews-helpful' review=review %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if reviews.canReview %}
+            <div id="reviewForm">
+                <h3 class="mb-3">
+                    Create Review
+                </h3>
+                <div class="border rounded p-3" id="reviewFormContent">
+                    {% partial 'shop-product/product-review-form' %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
