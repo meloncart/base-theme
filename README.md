@@ -1,6 +1,6 @@
-Commerce Theme
+Meloncart Theme
 ==========
 
-![Screenshot](https://raw.githubusercontent.com/responsiv/commerce-theme/master/assets/images/theme-preview.png)
+![Screenshot](https://raw.githubusercontent.com/meloncart/fresh-theme/master/assets/images/theme-preview.png)
 
 Implements eCommerce and user management features.
