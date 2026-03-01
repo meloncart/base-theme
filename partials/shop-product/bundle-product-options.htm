@@ -11,7 +11,7 @@
                         name="{{ controlName }}[{{ option.hash }}]"
                         class="form-select form-select-sm"
                         data-request="catalog::onAction"
-                        data-request-update="{ 'shop/bundle': '#productBundleItems' }">
+                        data-request-update="{ 'shop-product/bundle': '#productBundleItems' }">
                         {% for value in option.values %}
                             <option
                                 value="{{ value }}"

@@ -51,12 +51,20 @@
             </div>
         </div>
 
-        <div>
-            {% partial 'shop/product-list' products=products viewMode=viewMode %}
-        </div>
+        {% if products is not empty %}
+            <div>
+                {% partial 'shop/product-list' products=products viewMode=viewMode %}
+            </div>
 
-        <div>
-            {{ ajaxPager(products) }}
-        </div>
+            <div>
+                {{ ajaxPager(products) }}
+            </div>
+        {% else %}
+            <div class="border rounded text-center py-5">
+                <p class="mb-0 text-muted">
+                    This category does not contain any products.
+                </p>
+            </div>
+        {% endif %}
     </form>
 </div>

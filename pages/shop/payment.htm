@@ -55,7 +55,7 @@ isDefault = 1
                     <div class="card-body pb-0">
                         <h5 class="cart-title mb-4">Order Details</h5>
                         <div id="shopOrderDetails">
-                            {% partial 'shop/order-details' %}
+                            {% partial 'shop-checkout/order-details' %}
                         </div>
                     </div>
                 </div>
@@ -83,8 +83,8 @@ isDefault = 1
                                                 value="{{ method.id }}"
                                                 data-request="onUpdatePaymentMethod"
                                                 data-request-update="{
-                                                    'shop/payment-form': '#shopPaymentForm',
-                                                    'shop/order-details': '#shopOrderDetails'
+                                                    'shop-checkout/payment-form': '#shopPaymentForm',
+                                                    'shop-checkout/order-details': '#shopOrderDetails'
                                                 }"
                                                 {{ order.payment_method_id == method.id ? 'checked' }} />
                                             <div class="ps-1 ms-2">
@@ -103,14 +103,14 @@ isDefault = 1
                         {% endif %}
                     </div>
                     <div id="shopPaymentForm">
-                        {% partial 'shop/payment-form' %}
+                        {% partial 'shop-checkout/payment-form' %}
                     </div>
                 {% endif %}
             </div>
         </div>
         <div class="col-lg-5 col-12 d-none d-md-block border-start py-5">
             <div class="ps-4" id="shopCheckoutOrderSummary">
-                {% partial 'shop/order-summary' items=order.items %}
+                {% partial 'shop-checkout/order-summary' items=order.items %}
             </div>
         </div>
     </div>

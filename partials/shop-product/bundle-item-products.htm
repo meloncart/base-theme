@@ -7,7 +7,7 @@
         name="bundle_items[{{ bundleItem.id }}][product_id]"
         class="form-select mb-2"
         data-request="catalog::onAction"
-        data-request-update="{ 'shop/bundle': '#productBundleItems' }">
+        data-request-update="{ 'shop-product/bundle': '#productBundleItems' }">
         {% if not bundleItem.is_required %}
             <option value="">-- Please Select --</option>
         {% endif %}
@@ -30,7 +30,7 @@
         {% if itemProduct.is_active %}
             {% set isSelected = (selectedProductId == itemProduct.id) or (not selectedProductId and itemProduct.is_default) %}
             {% if isSelected %}
-                {% partial 'shop/bundle-product-parameters'
+                {% partial 'shop-product/bundle-product-parameters'
                     bundleItem=bundleItem
                     itemProduct=itemProduct
                     bundleProduct=itemProduct.product %}
@@ -77,7 +77,7 @@
                 </div>
                 <div class="bundle-product-parameters {{ not isSelected ? 'd-none' }}"
                     data-bundle-params="{{ itemProduct.id }}">
-                    {% partial 'shop/bundle-product-parameters'
+                    {% partial 'shop-product/bundle-product-parameters'
                         bundleItem=bundleItem
                         itemProduct=itemProduct
                         bundleProduct=itemProduct.product %}
@@ -110,7 +110,7 @@
                 </div>
                 <div class="bundle-product-parameters {{ not isChecked ? 'd-none' }}"
                     data-bundle-params="{{ itemProduct.id }}">
-                    {% partial 'shop/bundle-product-parameters'
+                    {% partial 'shop-product/bundle-product-parameters'
                         bundleItem=bundleItem
                         itemProduct=itemProduct
                         bundleProduct=itemProduct.product %}

@@ -40,7 +40,7 @@ vars[activeSubLink] = 'orders'
     </div>
 
     <div class="py-3">
-        {% partial 'shop/order-items' items=order.items %}
+        {% partial 'shop-checkout/order-items' items=order.items %}
     </div>
 
     {% if not order.is_payment_processed %}

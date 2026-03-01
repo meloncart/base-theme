@@ -6,7 +6,7 @@
                     <span class="badge bg-danger fs-6">On Sale!</span>
                 </div>
             {% endif %}
-            {% partial 'shop/product-images' %}
+            {% partial 'shop-product/product-images' %}
         </div>
     </div>
 
@@ -48,15 +48,15 @@
                 <input type="hidden" name="product_baseid" value="{{ product.baseid }}" />
 
                 <div class="product-options mb-3">
-                    {% partial 'shop/product-options' %}
+                    {% partial 'shop-product/product-options' %}
                 </div>
                 <div class="product-extra-options mb-3">
-                    {% partial 'shop/product-extra-options' %}
+                    {% partial 'shop-product/product-extra-options' %}
                 </div>
 
                 {% if product.bundle_items is not empty %}
                     <div id="productBundleItems" class="product-bundle-items mb-3">
-                        {% partial 'shop/bundle' %}
+                        {% partial 'shop-product/bundle' %}
                     </div>
                 {% endif %}
 
@@ -80,12 +80,12 @@
                         </div>
                     {% else %}
                         <div class="product-panel">
-                            {% partial 'shop/add-to-cart-control' %}
+                            {% partial 'shop-product/add-to-cart-control' %}
                         </div>
                     {% endif %}
                 {% else %}
                     <div class="product-panel">
-                        {% partial 'shop/add-to-cart-control' %}
+                        {% partial 'shop-product/add-to-cart-control' %}
                     </div>
                 {% endif %}
             </form>
@@ -118,8 +118,8 @@
             </div>
         </div>
         <div class="tab-pane fade" id="infoTabPane" tabindex="0">
-            {% partial 'shop/product-attributes' %}
-            {% partial 'shop/product-price-tiers' %}
+            {% partial 'shop-product/product-attributes' %}
+            {% partial 'shop-product/product-price-tiers' %}
         </div>
     </div>
 </div>

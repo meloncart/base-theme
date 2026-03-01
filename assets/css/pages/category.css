@@ -1,0 +1,64 @@
+/*
+ * Category Page
+ */
+
+/* Category header banner */
+.category-header {
+    background-color: #f0f3f2;
+    border: 0;
+    border-radius: var(--bs-border-radius);
+}
+
+.category-header .card-body {
+    padding: 2rem;
+}
+
+/* Sidebar nav category */
+.nav-category .nav-item .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--bs-dark);
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.nav-category .nav-item .nav-link:hover {
+    color: var(--bs-primary);
+}
+
+.nav-category .nav-item .nav-link.active {
+    color: var(--bs-primary);
+}
+
+.nav-category .nav-category-toggle {
+    padding: 0.5rem 0;
+    color: var(--bs-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-category .nav-category-toggle:hover {
+    color: var(--bs-primary);
+}
+
+.nav-category .nav-category-toggle .bi-chevron-right {
+    font-size: 0.625rem;
+    transition: transform 0.2s;
+}
+
+.nav-category .nav-category-toggle:not(.collapsed) .bi-chevron-right {
+    transform: rotate(90deg);
+}
+
+.nav-category .accordion-collapse .nav-link {
+    padding: 0.25rem 0;
+    font-size: 0.8125rem;
+    color: var(--bs-gray-600);
+}
+
+.nav-category .accordion-collapse .nav-link:hover,
+.nav-category .accordion-collapse .nav-link.active {
+    color: var(--bs-primary);
+}

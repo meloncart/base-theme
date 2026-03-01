@@ -1,0 +1,20 @@
+{% set manufacturers = catalog.allManufacturers %}
+{% if manufacturers is not empty %}
+    <div class="mb-8">
+        <h5 class="mb-3">
+            Manufacturers
+        </h5>
+        {% for manufacturer in manufacturers %}
+            <div class="form-check mb-2">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="{{ manufacturer.id }}"
+                    id="manufacturer{{ manufacturer.id }}">
+                <label class="form-check-label" for="manufacturer{{ manufacturer.id }}">
+                    {{ manufacturer.name }}
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

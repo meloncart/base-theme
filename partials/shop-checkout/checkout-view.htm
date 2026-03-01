@@ -1,7 +1,7 @@
 {% set checkoutStep = post('checkout_step', 'details') %}
 <div class="border-bottom">
     <div class="container py-3">
-        {% partial 'shop/checkout-order-progress' %}
+        {% partial 'shop-checkout/checkout-order-progress' %}
     </div>
 </div>
 <div class="container">
@@ -10,7 +10,7 @@
             <form id="checkoutForm" data-control="checkout-form" data-request-flash>
                 <div class="pe-4">
                     {% if checkoutStep == 'details' %}
-                        {% partial 'shop/checkout-step-details' %}
+                        {% partial 'shop-checkout/checkout-step-details' %}
                         <input type="hidden" name="post_contact_details" value="true" />
                         <div class="d-flex align-items-center justify-content-between mt-4">
                             <a
@@ -22,7 +22,7 @@
                                 type="submit "
                                 data-request="onAction"
                                 data-request-data="{ checkout_step: 'shipping' }"
-                                data-request-update="{ 'shop/checkout-view': '#shopCheckoutView' }"
+                                data-request-update="{ 'shop-checkout/checkout-view': '#shopCheckoutView' }"
                                 data-attach-loading
                                 data-request-flash
                                 class="btn btn-lg btn-primary">
@@ -30,14 +30,14 @@
                             </button>
                         </div>
                     {% elseif checkoutStep == 'shipping' %}
-                        {% partial 'shop/checkout-step-shipping' %}
+                        {% partial 'shop-checkout/checkout-step-shipping' %}
                         <input type="hidden" name="post_shipping_method" value="true" />
                         <div class="d-flex justify-content-between mt-4">
                             <a
                                 href="javascript:;"
                                 data-request="onAction"
                                 data-request-data="{ checkout_step: 'details', skip_validation: true }"
-                                data-request-update="{ 'shop/checkout-view': '#shopCheckoutView' }"
+                                data-request-update="{ 'shop-checkout/checkout-view': '#shopCheckoutView' }"
                                 class="btn btn-link">
                                 <i class="bi bi-chevron-left"></i> Return to Details
                             </a>
@@ -45,7 +45,7 @@
                                 href="javascript:;"
                                 data-request="onAction"
                                 data-request-data="{ checkout_step: 'payment' }"
-                                data-request-update="{ 'shop/checkout-view': '#shopCheckoutView' }"
+                                data-request-update="{ 'shop-checkout/checkout-view': '#shopCheckoutView' }"
                                 data-attach-loading
                                 data-request-flash
                                 class="btn btn-lg btn-primary">
@@ -53,14 +53,14 @@
                             </a>
                         </div>
                     {% elseif checkoutStep == 'payment' %}
-                        {% partial 'shop/checkout-step-payment' %}
+                        {% partial 'shop-checkout/checkout-step-payment' %}
                         <input type="hidden" name="post_payment_method" value="true" />
                         <div class="d-flex justify-content-between mt-4">
                             <a
                                 href="javascript:;"
                                 data-request="onAction"
                                 data-request-data="{ checkout_step: 'shipping', skip_validation: true }"
-                                data-request-update="{ 'shop/checkout-view': '#shopCheckoutView' }"
+                                data-request-update="{ 'shop-checkout/checkout-view': '#shopCheckoutView' }"
                                 class="btn btn-link">
                                 <i class="bi bi-chevron-left"></i> Return to Shipping
                             </a>
@@ -70,13 +70,13 @@
             </form>
             {% if checkoutStep == 'payment' %}
                 <div id="shopPaymentForm" class="mt-4 pe-4">
-                    {% partial 'shop/payment-form' %}
+                    {% partial 'shop-checkout/payment-form' %}
                 </div>
             {% endif %}
         </div>
         <div class="col-lg-5 col-12 d-none d-md-block border-start py-5">
             <div class="ps-4" id="shopCheckoutOrderSummary">
-                {% partial 'shop/order-summary' %}
+                {% partial 'shop-checkout/order-summary' %}
             </div>
         </div>
     </div>

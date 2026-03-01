@@ -21,22 +21,22 @@ js[] = 'controls/checkout-form.js'
                 <form id="checkoutForm" data-control="checkout-form" data-request-flash>
                     <input type="hidden" name="post_contact_details" value="true" />
                     <div class="pe-4 mb-4" id="shopCheckoutStepDetails">
-                        {% partial 'shop/checkout-step-details' %}
+                        {% partial 'shop-checkout/checkout-step-details' %}
                     </div>
                     <div class="pe-4 mb-4" id="shopCheckoutStepShipping">
-                        {% partial 'shop/checkout-step-shipping' %}
+                        {% partial 'shop-checkout/checkout-step-shipping' %}
                     </div>
                     <div class="pe-4 mb-4" id="shopCheckoutStepPayment">
-                        {% partial 'shop/checkout-step-payment' %}
+                        {% partial 'shop-checkout/checkout-step-payment' %}
                     </div>
                 </form>
                 <div id="shopPaymentForm" class="pe-4">
-                    {% partial 'shop/payment-form' %}
+                    {% partial 'shop-checkout/payment-form' %}
                 </div>
             </div>
             <div class="col-lg-5 col-12 d-none d-md-block border-start py-5">
                 <div class="ps-4" id="shopCheckoutOrderSummary">
-                    {% partial 'shop/order-summary' %}
+                    {% partial 'shop-checkout/order-summary' %}
                 </div>
             </div>
         </div>

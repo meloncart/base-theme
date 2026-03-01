@@ -12,7 +12,7 @@
                             class="form-select"
                             {% if product.use_variants %}
                                 data-request="catalog::onAction"
-                                data-request-update="{ 'shop/product-view': '#productPage' }"
+                                data-request-update="{ 'shop-product/product-view': '#productPage' }"
                             {% endif %}>
                             {% for value in option.values %}
                                 <option

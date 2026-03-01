@@ -95,13 +95,16 @@ a {
 }
 
 /* Extended spacers */
+.mb-6 { margin-bottom: 1.5rem !important; }
 .mt-8 { margin-top: 2rem !important; }
 .mb-8 { margin-bottom: 2rem !important; }
+.p-9 { padding: 2.5rem !important; }
 .px-8 { padding-left: 2rem !important; padding-right: 2rem !important; }
 .py-10 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
 .py-14 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
 .ps-12 { padding-left: 4rem !important; }
 .py-16 { padding-top: 8rem !important; padding-bottom: 8rem !important; }
+.gx-10 { --bs-gutter-x: 3rem; }
 
 @media (min-width: 992px) {
     .ps-lg-12 { padding-left: 4rem !important; }
