@@ -92,7 +92,7 @@
                 <ul class="dropdown-menu">
                     {% for category in catalog.allCategories %}
                         <li>
-                            <a class="dropdown-item" href="{{ 'shop/category'|page({ fullslug: category.fullslug }) }}">
+                            <a class="dropdown-item" href="{{ 'shop/category'|page({ fullslug: category.fullslug, baseid: category.baseid }) }}">
                                 {{ category.name }}
                             </a>
                         </li>
@@ -119,7 +119,7 @@
                                 <ul class="mb-0 list-unstyled">
                                     {% for category in catalog.allCategories %}
                                         <li>
-                                            <a class="dropdown-item" href="{{ 'shop/category'|page({ fullslug: category.fullslug }) }}">
+                                            <a class="dropdown-item" href="{{ 'shop/category'|page({ fullslug: category.fullslug, baseid: category.baseid }) }}">
                                                 {{ category.name }}
                                             </a>
                                         </li>

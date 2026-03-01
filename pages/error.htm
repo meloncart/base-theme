@@ -1,16 +1,29 @@
 title = "Error Page (500)"
 url = "/error"
 layout = "default"
-
-[resources]
-css[] = "pages/404.css"
 ==
 {% put meta %}
     <meta name="turbo-visit-control" content="error">
 {% endput %}
-<div class="container page-404">
-    <div class="banner-404">
-        <h1>Error</h1>
-        <p>We're sorry, but something went wrong and the page cannot be displayed.</p>
+<div class="container">
+    <div class="row justify-content-center align-items-center py-5">
+        <div class="col-md-6">
+            <div class="mb-6 mb-lg-0">
+                <h1>
+                    Something went wrong...
+                </h1>
+                <p class="mb-8">
+                    We're sorry, but something went wrong and the page cannot be displayed.
+                    <br>
+                    Please try again later or head back to home.
+                </p>
+                <a href="{{ 'index'|page }}" class="btn btn-primary">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ 'assets/images/svg-graphics/error.svg'|theme }}" alt="Error" class="img-fluid" />
+        </div>
     </div>
 </div>
