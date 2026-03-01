@@ -1,14 +1,70 @@
 {% set activeNavLink = activeNavLink|default(this.page.id) %}
 
 <li class="nav-item">
-    <a class="nav-link {{ activeNavLink == 'home' ? 'active' }}" href="{{ 'index'|page }}">Home</a>
+    <a class="nav-link {{ activeNavLink == 'home' ? 'active' }}" href="{{ 'index'|page }}">
+        Home
+    </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link {{ activeNavLink == 'shop' ? 'active' }}" href="{{ 'shop/index'|page }}">Shop</a>
+    <a class="nav-link {{ activeNavLink == 'shop' ? 'active' }}" href="{{ 'shop/index'|page }}">
+        Shop
+    </a>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle {{ activeNavLink == 'account' ? 'active' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Account
+    </a>
+    {% if session.user %}
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" href="{{ 'account/index'|page }}">
+                    Profile Details
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ 'account/orders'|page }}">
+                    My Orders
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ 'account/addresses'|page }}">
+                    My Addresses
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ 'account/security'|page }}">
+                    Account Security
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item" href="javascript:;" data-request="onLogout">
+                    Logout
+                </a>
+            </li>
+        </ul>
+    {% else %}
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" href="{{ 'account/login'|page }}">
+                    Sign In
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ 'account/register'|page }}">
+                    Register
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ 'account/password'|page }}">
+                    Forgot Password
+                </a>
+            </li>
+        </ul>
+    {% endif %}
 </li>
 <li class="nav-item">
-    <a class="nav-link {{ activeNavLink == 'account' ? 'active' }}" href="{{ 'account/index'|page }}">Account</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link {{ activeNavLink == 'contact' ? 'active' }}" href="{{ 'contact'|page }}">Contact</a>
+    <a class="nav-link {{ activeNavLink == 'contact' ? 'active' }}" href="{{ 'contact'|page }}">
+        Contact
+    </a>
 </li>

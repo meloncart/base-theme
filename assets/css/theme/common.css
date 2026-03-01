@@ -66,6 +66,33 @@ h6, .h6 {
     background-color: #f0f3f2 !important;
 }
 
+/* Primary color overrides (green) */
+.bg-primary {
+    background-color: #0aad0a !important;
+}
+
+.text-primary {
+    color: #0aad0a !important;
+}
+
+.border-primary {
+    border-color: #0aad0a !important;
+}
+
+.link-primary {
+    color: #0aad0a !important;
+    &:hover, &:focus {
+        color: #088a08 !important;
+    }
+}
+
+a {
+    color: #0aad0a;
+    &:hover {
+        color: #088a08;
+    }
+}
+
 /* Extended spacers */
 .mt-8 { margin-top: 2rem !important; }
 .mb-8 { margin-bottom: 2rem !important; }

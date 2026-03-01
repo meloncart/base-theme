@@ -1,5 +1,6 @@
 [backendLink]
 [sitePicker]
+[catalog]
 ==
 <div class="border-bottom">
     <!-- Top Banner -->
@@ -82,6 +83,22 @@
     <!-- Nav -->
     <nav id="layout-nav" class="navbar navbar-expand-lg navbar-light py-0 py-lg-2" aria-label="Main navigation">
         <div class="container">
+            <!-- All Departments: Desktop (dropdown) -->
+            <div class="dropdown me-3 d-none d-lg-block">
+                <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-grid me-1"></i>
+                    All Departments
+                </button>
+                <ul class="dropdown-menu">
+                    {% for category in catalog.allCategories %}
+                        <li>
+                            <a class="dropdown-item" href="{{ 'shop/category'|page({ slug: category.slug }) }}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="navbar-default" aria-labelledby="navbar-defaultLabel">
                 <div class="offcanvas-header pb-1">
                     <a href="{{ 'index'|page }}"><img src="{{ 'assets/images/logo.svg'|theme }}" alt="Meloncart" height="35" /></a>
@@ -90,6 +107,26 @@
                 <div class="offcanvas-body">
                     <div class="d-block d-lg-none mb-4">
                         {% partial 'site/nav-search' %}
+                    </div>
+                    <!-- All Departments: Mobile (collapsible) -->
+                    <div class="d-block d-lg-none mb-4">
+                        <a class="btn btn-primary w-100 d-flex justify-content-center align-items-center" data-bs-toggle="collapse" href="#collapseDepartments" role="button" aria-expanded="false" aria-controls="collapseDepartments">
+                            <i class="bi bi-grid me-2"></i>
+                            All Departments
+                        </a>
+                        <div class="collapse mt-2" id="collapseDepartments">
+                            <div class="card card-body">
+                                <ul class="mb-0 list-unstyled">
+                                    {% for category in catalog.allCategories %}
+                                        <li>
+                                            <a class="dropdown-item" href="{{ 'shop/category'|page({ slug: category.slug }) }}">
+                                                {{ category.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <ul class="navbar-nav">
                         {% partial 'site/nav-links' %}
