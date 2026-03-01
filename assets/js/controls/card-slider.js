@@ -1,4 +1,4 @@
-oc.registerControl('card-slider', class extends oc.ControlBase {
+class CardSlider extends oc.ControlBase {
     init() {
         this.$el = $(this.element);
         this.sliderType = this.config.sliderType || 'hero';
@@ -115,4 +115,8 @@ oc.registerControl('card-slider', class extends oc.ControlBase {
             ]
         };
     }
-});
+}
+
+export default function() {
+    oc.registerControl('card-slider', CardSlider);
+}

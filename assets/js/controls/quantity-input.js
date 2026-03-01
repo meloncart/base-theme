@@ -1,4 +1,4 @@
-oc.registerControl('quantity-input', class extends oc.ControlBase {
+class QuantityInput extends oc.ControlBase {
     connect() {
         this.$qty = this.element.querySelector('input.quantity-field');
         this.listen('click', '.button-plus', this.onIncrementValue);
@@ -45,4 +45,8 @@ oc.registerControl('quantity-input', class extends oc.ControlBase {
 
         this.$qty.value = value;
     }
-});
+}
+
+export default function() {
+    oc.registerControl('quantity-input', QuantityInput);
+}

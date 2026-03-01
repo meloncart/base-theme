@@ -1,4 +1,4 @@
-oc.registerControl('checkout-form', class extends oc.ControlBase {
+class CheckoutForm extends oc.ControlBase {
     connect() {
         this.listen('change', '[name=city],[name=zip],[name=state_id],[name=country_id]', this.onChangeContactDetails);
         this.listen('change', '[name=shipping_method]', this.onChangeShippingMethod);
@@ -72,4 +72,8 @@ oc.registerControl('checkout-form', class extends oc.ControlBase {
             }
         });
     }
-});
+}
+
+export default function() {
+    oc.registerControl('checkout-form', CheckoutForm);
+}

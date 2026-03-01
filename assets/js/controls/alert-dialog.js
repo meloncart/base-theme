@@ -117,8 +117,8 @@ class AlertDialog extends oc.ControlBase
     }
 }
 
-oc.registerControl('alert-dialog', AlertDialog);
-
-window.alertMessage = AlertDialog.alertMessageGlobal;
-
-window.confirmMessage = AlertDialog.confirmMessageGlobal;
+export default function() {
+    oc.registerControl('alert-dialog', AlertDialog);
+    window.alertMessage = AlertDialog.alertMessageGlobal;
+    window.confirmMessage = AlertDialog.confirmMessageGlobal;
+}

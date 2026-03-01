@@ -1,4 +1,8 @@
-oc.registerControl('gallery-slider', class extends oc.ControlBase {
+import PhotoSwipeLightbox from '../../vendor/photoswipe/photoswipe-lightbox.esm.min.js';
+import PhotoSwipeModule from '../../vendor/photoswipe/photoswipe.esm.min.js';
+import PhotoSwipeDynamicCaption from '../../vendor/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.js';
+
+class GallerySlider extends oc.ControlBase {
     init() {
         this.$thumbs = this.element.querySelector('[data-slider-thumbs]') || this.element;
         this.$previews = this.element.querySelector('[data-slider-previews]');
@@ -85,15 +89,17 @@ oc.registerControl('gallery-slider', class extends oc.ControlBase {
     }
 
     prepareLightbox() {
-        $('.slick-slide a', this.$el).each(function () {
-            var image = new Image(),
-                link = this;
-
-            image.src = this.getAttribute('href');
-            image.onload = function () {
+        this.element.querySelectorAll('.slick-slide a').forEach(function(link) {
+            var image = new Image();
+            image.src = link.getAttribute('href');
+            image.onload = function() {
                 link.setAttribute('data-pswp-width', image.naturalWidth);
                 link.setAttribute('data-pswp-height', image.naturalHeight);
             };
         });
     }
-});
+}
+
+export default function() {
+    oc.registerControl('gallery-slider', GallerySlider);
+}

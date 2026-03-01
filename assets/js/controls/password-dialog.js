@@ -62,4 +62,6 @@ class PasswordDialog extends oc.ControlBase {
     }
 }
 
-oc.registerControl('password-dialog', PasswordDialog);
+export default function() {
+    oc.registerControl('password-dialog', PasswordDialog);
+}

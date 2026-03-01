@@ -71,4 +71,10 @@ mkdirSync('assets/vendor/photoswipe-dynamic-caption-plugin', { recursive: true }
 copyFileSync('node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.js', 'assets/vendor/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.js');
 copyFileSync('node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css', 'assets/vendor/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css');
 
+mkdirSync('assets/vendor/nouislider', { recursive: true });
+copyFileSync('node_modules/nouislider/dist/nouislider.mjs', 'assets/vendor/nouislider/nouislider.mjs');
+copyFileSync('node_modules/nouislider/dist/nouislider.css', 'assets/vendor/nouislider/nouislider.css');
+
+copyFileSync('node_modules/wnumb/wNumb.min.js', 'assets/vendor/wnumb.min.js');
+
 console.log('Build complete.');
