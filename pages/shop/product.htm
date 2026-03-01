@@ -18,8 +18,8 @@ vars[activeNavLink] = 'shop'
 ==
 {% if not product %}
     {% do abort(404) %}
-{% elseif product.fullslug and product.fullslug != this.param.fullslug %}
-    {% do redirect(this|page({ fullslug: product.fullslug }), 301) %}
+{% elseif product.slug and product.slug != this.param.slug %}
+    {% do redirect(this|page({ slug: product.slug }), 301) %}
 {% endif %}
 
 <div class="container container-padded">
