@@ -18,6 +18,9 @@
     --gray-light: #c1c7c6;
     --gray-lighter: #f0f3f2;
 
+    /* Bootstrap */
+    --bs-light: #f0f3f2;
+
     /* Typography */
     --font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
     --line-height-base: 1.7;

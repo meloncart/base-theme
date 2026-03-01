@@ -34,3 +34,22 @@
         }
     }
 }
+
+.nav-pills-dark .nav-item .nav-link {
+    color: var(--bs-gray-800);
+    background-color: transparent;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.nav-pills-dark .nav-item .nav-link:hover {
+    color: #001e2b;
+    background-color: var(--bs-light);
+}
+
+.nav-pills-dark .nav-item .nav-link.active {
+    color: #fff;
+    background-color: #001e2b;
+}
