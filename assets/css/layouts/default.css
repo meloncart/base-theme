@@ -25,8 +25,8 @@
     background: #fff;
 
     .container-padded {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 
     header {
