@@ -61,8 +61,10 @@ addEventListener('ajax:update-complete', function(event) {
     if (['onRemoveFromCart', 'onAddToCart'].includes(handler)) {
         var el = document.querySelector('#miniCart');
         if (el) {
+            el.classList.remove('animate-shockwave');
+            void el.offsetWidth;
             el.classList.add('animate-shockwave');
-            setTimeout(function() { el.classList.remove('animate-shockwave'); }, 1100);
+            setTimeout(function() { el.classList.remove('animate-shockwave'); }, 800);
         }
     }
 });
