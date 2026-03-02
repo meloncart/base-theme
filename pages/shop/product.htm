@@ -13,7 +13,6 @@ identifier = "baseid"
 productId = "{{ :baseid }}"
 
 [resources]
-module[] = "pages/product.js"
 vars[activeNavLink] = 'shop'
 ==
 {% if not product %}
@@ -27,7 +26,7 @@ vars[activeNavLink] = 'shop'
         {% partial 'shop/breadcrumb' object=product %}
     </div>
 
-    <div id="productPage">
+    <div id="productPage" data-control="product-form">
         {% partial 'shop-product/product-view' %}
     </div>
 </div>

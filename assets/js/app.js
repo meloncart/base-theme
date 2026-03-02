@@ -3,7 +3,9 @@ import registerPasswordDialog from './controls/password-dialog.js';
 import registerGallerySlider from './controls/gallery-slider.js';
 import registerCardSlider from './controls/card-slider.js';
 import registerQuantityInput from './controls/quantity-input.js';
+import registerCatalogForm from './controls/catalog-form.js';
 import registerCheckoutForm from './controls/checkout-form.js';
+import registerProductForm from './controls/product-form.js';
 import registerPriceSlider from './controls/price-slider.js';
 import registerStarRating from './controls/star-rating.js';
 
@@ -13,7 +15,9 @@ registerPasswordDialog();
 registerGallerySlider();
 registerCardSlider();
 registerQuantityInput();
+registerCatalogForm();
 registerCheckoutForm();
+registerProductForm();
 registerPriceSlider();
 registerStarRating();
 
