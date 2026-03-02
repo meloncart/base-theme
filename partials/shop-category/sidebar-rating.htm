@@ -5,7 +5,7 @@
     <div>
         {% for star in 5..1 %}
             <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="{{ star }}" id="rating{{ star }}">
+                <input class="form-check-input" type="checkbox" value="{{ star }}" id="rating{{ star }}" data-filter-rating>
                 <label class="form-check-label" for="rating{{ star }}">
                     {% partial 'ui/star-rating-display' rating=star %}
                 </label>

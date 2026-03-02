@@ -20,8 +20,11 @@
 
 <div class="category-products">
     <form>
-        {% set manufacturers = post('manufacturers') %}
-        {% set products = category.listProducts({ sorting: sortingPreference, manufacturers: manufacturers }) %}
+        {% set products = category.listProducts({
+            sorting: sortingPreference,
+            manufacturers: post('manufacturers'),
+            ratings: post('ratings')
+        }) %}
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="flex-grow-1">
