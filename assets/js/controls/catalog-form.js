@@ -2,13 +2,7 @@ class CatalogForm extends oc.ControlBase {
     connect() {
         this.listen('change', '[data-filter-manufacturer]', this.onFilterProducts);
         this.listen('change', '[data-filter-rating]', this.onFilterProducts);
-        this.listen('price-change', '[data-control="price-slider"]', this.onPriceChange);
-    }
-
-    onPriceChange(ev) {
-        this.priceMin = ev.detail.min;
-        this.priceMax = ev.detail.max;
-        this.onFilterProducts();
+        this.listen('change', '[data-control="price-slider"]', this.onFilterProducts);
     }
 
     onFilterProducts() {
@@ -30,11 +24,13 @@ class CatalogForm extends oc.ControlBase {
             data.ratings = ratings;
         }
 
-        if (this.priceMin !== undefined) {
-            data.priceMin = this.priceMin;
+        const priceMin = this.element.querySelector('[data-filter-price-min]');
+        const priceMax = this.element.querySelector('[data-filter-price-max]');
+        if (priceMin) {
+            data.priceMin = priceMin.value;
         }
-        if (this.priceMax !== undefined) {
-            data.priceMax = this.priceMax;
+        if (priceMax) {
+            data.priceMax = priceMax.value;
         }
 
         oc.request(this.element, 'onAction', {

@@ -20,6 +20,8 @@
                 Price:
             </small>
             <span data-price-range-text class="small"></span>
+            <input type="hidden" data-filter-price-min value="{{ priceRange.min }}">
+            <input type="hidden" data-filter-price-max value="{{ priceRange.max }}">
         </div>
     </div>
 {% endif %}

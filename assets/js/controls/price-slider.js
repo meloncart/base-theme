@@ -4,6 +4,8 @@ class PriceSlider extends oc.ControlBase {
     init() {
         this.sliderEl = this.element.querySelector('[data-price-range-slider]');
         this.valueEl = this.element.querySelector('[data-price-range-text]');
+        this.minInput = this.element.querySelector('[data-filter-price-min]');
+        this.maxInput = this.element.querySelector('[data-filter-price-max]');
     }
 
     connect() {
@@ -42,6 +44,8 @@ class PriceSlider extends oc.ControlBase {
         }
         this.sliderEl = null;
         this.valueEl = null;
+        this.minInput = null;
+        this.maxInput = null;
     }
 
     formatPrice(baseValue) {
@@ -63,13 +67,14 @@ class PriceSlider extends oc.ControlBase {
     }
 
     onSliderChange(values) {
-        this.element.dispatchEvent(new CustomEvent('price-change', {
-            bubbles: true,
-            detail: {
-                min: values[0],
-                max: values[1]
-            }
-        }));
+        if (this.minInput) {
+            this.minInput.value = values[0];
+        }
+        if (this.maxInput) {
+            this.maxInput.value = values[1];
+        }
+
+        this.element.dispatchEvent(new Event('change', { bubbles: true }));
     }
 }
 
