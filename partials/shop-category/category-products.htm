@@ -23,7 +23,9 @@
         {% set products = category.listProducts({
             sorting: sortingPreference,
             manufacturers: post('manufacturers'),
-            ratings: post('ratings')
+            ratings: post('ratings'),
+            priceMin: post('priceMin'),
+            priceMax: post('priceMax')
         }) %}
 
         <div class="d-flex justify-content-between align-items-center mb-3">
