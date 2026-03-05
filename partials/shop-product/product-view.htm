@@ -37,8 +37,8 @@
                 {% if product.use_variants %}
                     {% if variant %}
                         <span class="fw-bold text-dark">{{ variant.getCompiledPrice(1)|currency }}</span>
-                        {% if variant.is_on_sale %}
-                            <span class="text-decoration-line-through text-muted">{{ variant.price|currency }}</span>
+                        {% if variant.on_sale %}
+                            <span class="text-decoration-line-through text-muted">{{ variant.getEffectivePrice()|currency }}</span>
                         {% endif %}
                     {% else %}
                         <span class="fw-bold text-dark">{{ product.final_sale_price|currency }}</span>
@@ -85,7 +85,7 @@
                         </div>
                     {% else %}
                         <div class="product-panel">
-                            {% partial 'shop-product/add-to-cart-control' %}
+                            {% partial 'shop-product/add-to-cart-control' variant=variant %}
                         </div>
                     {% endif %}
                 {% else %}
