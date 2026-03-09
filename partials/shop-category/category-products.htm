@@ -1,14 +1,14 @@
-{% if post('sorting') %}
-    {% do this.session.put('cat_sorting_' ~ category.id, post('sorting')) %}
+{% if post('sort') %}
+    {% do this.session.put('cat_sort_' ~ category.id, post('sort')) %}
 {% endif %}
 {% if post('view_mode') %}
     {% do this.session.put('cat_view_' ~ category.id, post('view_mode')) %}
 {% endif %}
 
-{% set sortingPreference = this.session.get('cat_sorting_' ~ category.id, 'name') %}
+{% set sortPreference = this.session.get('cat_sort_' ~ category.id, 'name') %}
 {% set viewMode = this.session.get('cat_view_' ~ category.id, 'list') %}
 
-{% set sortingOptions = {
+{% set sortOptions = {
     name: 'Name',
     'price desc': 'Price (high to low)',
     'price asc': 'Price (low to high)'
@@ -21,7 +21,7 @@
 <div class="category-products">
     <form>
         {% set products = category.listProducts({
-            sorting: sortingPreference,
+            sort: sortPreference,
             manufacturers: post('manufacturers'),
             ratings: post('ratings'),
             priceMin: post('priceMin'),
@@ -47,11 +47,11 @@
             <div>
                 <select
                     class="form-select"
-                    name="sorting"
+                    name="sort"
                     data-request="onAjax"
                     data-request-update="{ _self: true }">
-                    {% for optionKey, optionName in sortingOptions %}
-                        <option value="{{ optionKey }}" {{ sortingPreference == optionKey ? 'selected' : '' }}>{{ optionName }}</option>
+                    {% for optionKey, optionName in sortOptions %}
+                        <option value="{{ optionKey }}" {{ sortPreference == optionKey ? 'selected' : '' }}>{{ optionName }}</option>
                     {% endfor %}
                 </select>
             </div>
