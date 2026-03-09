@@ -1,0 +1,17 @@
+#cartFlyout {
+    --bs-offcanvas-width: 560px;
+}
+
+.control-cart-flyout {
+    .min-width-0 {
+        min-width: 0;
+    }
+
+    .control-quantity-input {
+        max-width: 100px;
+
+        .quantity-field {
+            text-align: center;
+        }
+    }
+}

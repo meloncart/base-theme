@@ -12,6 +12,7 @@
 @import "controls/price-slider.css";
 @import "controls/star-rating.css";
 @import "controls/search-autocomplete.css";
+@import "controls/cart-flyout.css";
 
 /* Elements */
 @import "elements/animations.css";

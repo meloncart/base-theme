@@ -1,0 +1,103 @@
+{% set items = cart.listActiveItems %}
+
+{% if items is empty %}
+    <div class="d-flex flex-column align-items-center justify-content-center h-100 p-5 text-center">
+        <i class="bi bi-bag fs-1 text-muted mb-3"></i>
+        <h6 class="mb-3">
+            Your cart is empty
+        </h6>
+        <a href="{{ 'shop/index'|page }}" class="btn btn-dark btn-sm" data-bs-dismiss="offcanvas">
+            Continue Shopping
+        </a>
+    </div>
+{% else %}
+    <ul class="list-group list-group-flush flex-grow-1 overflow-auto">
+        {% for item in items %}
+            {% set product = item.product %}
+            {% set isBundleChild = item.isBundleItem() %}
+            {% set imgSize = isBundleChild ? 40 : 64 %}
+            <li class="list-group-item py-3 border-top {{ isBundleChild ? 'bundle-child-item' : 'ps-0' }}">
+                <div class="row align-items-center">
+                    <div class="col-7">
+                        <div class="d-flex">
+                            <a href="{{ product.pageUrl('shop/product') }}" class="flex-shrink-0">
+                                {% if product.images is empty %}
+                                    <img src="{{ 'assets/images/default-post.png'|theme }}" width="{{ imgSize }}" height="{{ imgSize }}" style="object-fit: cover;" />
+                                {% else %}
+                                    <img src="{{ product.images.first|resize(imgSize, imgSize, { mode: 'crop' }) }}" alt="{{ product.name }}" width="{{ imgSize }}" height="{{ imgSize }}" style="object-fit: cover;" />
+                                {% endif %}
+                            </a>
+                            <div class="ms-3">
+                                <a href="{{ product.pageUrl('shop/product') }}" class="text-inherit">
+                                    <h6 class="mb-0">
+                                        {{ product.name }}
+                                    </h6>
+                                </a>
+                                {% if item.variant %}
+                                    <span>
+                                        <small class="text-muted">
+                                            {{ item.variant.name }}
+                                        </small>
+                                    </span>
+                                {% endif %}
+                                <span>
+                                    <small class="text-muted">
+                                        {{ item.final_price|currency }}
+                                    </small>
+                                </span>
+                                {% if not isBundleChild %}
+                                    <div class="mt-2 small lh-1">
+                                        <a
+                                            href="javascript:;"
+                                            data-request="onRemoveFromCart"
+                                            data-request-confirm="Remove this item from your cart?"
+                                            data-request-data="{ key: '{{ item.key }}' }"
+                                            data-request-update="{ 'shop-checkout/cart-flyout-content': '#cartFlyoutContent', 'shop-checkout/mini-cart': '#miniCart' }"
+                                            class="text-decoration-none text-inherit">
+                                            <span class="me-1 align-text-bottom">
+                                                <i class="bi bi-trash3 text-success"></i>
+                                            </span>
+                                            <span class="text-muted">
+                                                Remove
+                                            </span>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        {% if isBundleChild %}
+                            <div class="text-center text-muted">
+                                {{ item.quantity }}
+                            </div>
+                        {% else %}
+                            {% partial 'ui/quantity-input'
+                                name='item_quantity[' ~ item.key ~ ']'
+                                value=item.quantity
+                            %}
+                        {% endif %}
+                    </div>
+                    <div class="col-2 text-end">
+                        <span class="fw-bold">
+                            {{ item.final_line_price|currency }}
+                        </span>
+                        {% if item.final_discount > 0 %}
+                            <div class="text-decoration-line-through text-muted small">
+                                {{ (item.final_price * item.quantity)|currency }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="d-flex justify-content-between p-3 mt-auto border-top">
+        <a href="{{ 'shop/index'|page }}" class="btn btn-primary" data-bs-dismiss="offcanvas">
+            Continue Shopping
+        </a>
+        <a href="{{ 'shop/cart'|page }}" class="btn btn-dark">
+            View Cart
+        </a>
+    </div>
+{% endif %}

@@ -57,7 +57,7 @@
 .bundle-child-item {
     background-color: rgba(0, 0, 0, 0.015);
     border-left: 3px solid var(--bs-gray-300);
-    padding-left: 1rem !important;
+    padding-left: 2rem !important;
 }
 
 .bundle-totals-row {
