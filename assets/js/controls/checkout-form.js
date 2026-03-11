@@ -25,10 +25,10 @@ class CheckoutForm extends oc.ControlBase {
                 skip_validation: true
             },
             update: {
-                'shop/checkout-step-details': '#shopCheckoutStepDetails',
-                'shop/checkout-step-shipping': '#shopCheckoutStepShipping',
-                'shop/checkout-step-payment': '#shopCheckoutStepPayment',
-                'shop/order-summary': '#shopCheckoutOrderSummary'
+                'shop-checkout/checkout-step-details': '#shopCheckoutStepDetails',
+                'shop-checkout/checkout-step-shipping': '#shopCheckoutStepShipping',
+                'shop-checkout/checkout-step-payment': '#shopCheckoutStepPayment',
+                'shop-checkout/order-summary': '#shopCheckoutOrderSummary'
             }
         });
     }
@@ -40,9 +40,9 @@ class CheckoutForm extends oc.ControlBase {
                 skip_validation: true
             },
             update: {
-                'shop/checkout-step-shipping': '#shopCheckoutStepShipping',
-                'shop/checkout-step-payment': '#shopCheckoutStepPayment',
-                'shop/order-summary': '#shopCheckoutOrderSummary'
+                'shop-checkout/checkout-step-shipping': '#shopCheckoutStepShipping',
+                'shop-checkout/checkout-step-payment': '#shopCheckoutStepPayment',
+                'shop-checkout/order-summary': '#shopCheckoutOrderSummary'
             }
         });
     }
@@ -54,8 +54,8 @@ class CheckoutForm extends oc.ControlBase {
                 skip_validation: true
             },
             update: {
-                'shop/checkout-step-payment': '#shopCheckoutStepPayment',
-                'shop/order-summary': '#shopCheckoutOrderSummary'
+                'shop-checkout/checkout-step-payment': '#shopCheckoutStepPayment',
+                'shop-checkout/order-summary': '#shopCheckoutOrderSummary'
             }
         });
     }
@@ -67,8 +67,8 @@ class CheckoutForm extends oc.ControlBase {
                 skip_validation: true
             },
             update: {
-                'shop/payment-form': '#shopPaymentForm',
-                'shop/order-summary': '#shopCheckoutOrderSummary'
+                'shop-checkout/payment-form': '#shopPaymentForm',
+                'shop-checkout/order-summary': '#shopCheckoutOrderSummary'
             }
         });
     }
