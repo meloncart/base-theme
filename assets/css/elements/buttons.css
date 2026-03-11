@@ -63,7 +63,7 @@
             height: 14px;
             background-repeat: no-repeat;
             background-size: 14px 14px;
-            background-image: url('../../assets/images/icons/icon-share.png');
+            background-image: url('../../images/icons/icon-share.png');
         }
 
         &.btn-sm {

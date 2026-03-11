@@ -84,7 +84,7 @@ ul.pagination {
                     display: block;
                     width: 15px;
                     height: 12.5px;
-                    background: url('../../assets/images/icons/icon-pagination-arrow.png') no-repeat 0 0;
+                    background: url('../../images/icons/icon-pagination-arrow.png') no-repeat 0 0;
                     background-size: 15px 12.5px;
                     position: absolute;
                     top: 16px;
@@ -111,7 +111,7 @@ ul.pagination {
                     display: block;
                     width: 15px;
                     height: 12.5px;
-                    background: url('../../assets/images/icons/icon-pagination-arrow.png') no-repeat 0 0;
+                    background: url('../../images/icons/icon-pagination-arrow.png') no-repeat 0 0;
                     background-size: 15px 12.5px;
                     position: absolute;
                     top: 16px;

@@ -7,11 +7,13 @@ title = "Order"
 security = "user"
 redirect = "account/login"
 
+[orders]
+orderId = "{{ :id }}"
+
 [resources]
 vars[activeNavLink] = 'account'
 vars[activeSubLink] = 'orders'
 ==
-{% set order = user.orders().find(this.param.id) %}
 {% if not order %}
     {% do abort(404) %}
 {% endif %}
