@@ -1,8 +1,8 @@
 name: Fresh
-description: 'Base eCommerce theme.'
+description: 'Fresh eCommerce theme.'
 author: Meloncart
 homepage: 'http://meloncart.com'
-code: Base
+code: Fresh
 authorCode: Meloncart
 require:
     - Meloncart.Shop

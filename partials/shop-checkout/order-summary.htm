@@ -47,19 +47,77 @@
     {% endfor %}
 </ul>
 
+<div class="card mb-3">
+    <div class="card-body py-2">
+        {% if couponCode %}
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <i class="bi bi-tag-fill text-success"></i>
+                    <span class="fw-semibold">
+                        {{ couponCode }}
+                    </span>
+                </div>
+                <a
+                    href="javascript:;"
+                    data-request="onRemoveCoupon"
+                    data-request-update="{ 'shop-checkout/order-summary': '#shopCheckoutOrderSummary' }"
+                    data-attach-loading
+                    class="btn btn-sm btn-link text-danger p-0">
+                    Remove
+                </a>
+            </div>
+        {% else %}
+            <form>
+                <div class="input-group input-group-sm">
+                    <input
+                        type="text"
+                        name="coupon"
+                        class="form-control"
+                        placeholder="Coupon code" />
+                    <button
+                        type="submit"
+                        data-request="onApplyCoupon"
+                        data-request-update="{ 'shop-checkout/order-summary': '#shopCheckoutOrderSummary' }"
+                        data-attach-loading
+                        data-request-flash
+                        class="btn btn-outline-secondary">
+                        Apply
+                    </button>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
 <div class="card">
     <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between small">
             <div class="me-auto">
-                <div>Subtotal</div>
+                <div>
+                    Subtotal
+                </div>
             </div>
             <span>
                 {{ order.final_subtotal|currency }}
             </span>
         </li>
+        {% if order.discount %}
+            <li class="list-group-item d-flex justify-content-between small text-success">
+                <div class="me-auto">
+                    <div>
+                        Discount
+                    </div>
+                </div>
+                <span>
+                    -{{ order.final_discount|currency }}
+                </span>
+            </li>
+        {% endif %}
         <li class="list-group-item d-flex justify-content-between align-items-center small">
             <div class="me-auto">
-                <div>Shipping</div>
+                <div>
+                    Shipping
+                </div>
             </div>
             {% if not hasShippingAddress %}
                 <small class="text-muted">Enter address</small>
@@ -71,7 +129,9 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <div class="me-auto">
-                <div class="fw-bold">Total</div>
+                <div class="fw-bold">
+                    Total
+                </div>
             </div>
             <span class="fw-bold fs-5">{{ order.total|currency }}</span>
         </li>
