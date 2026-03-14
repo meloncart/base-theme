@@ -6,7 +6,7 @@
     <select
         name="bundle_items[{{ bundleItem.id }}][product_id]"
         class="form-select mb-2"
-        data-request="catalog::onAction"
+        data-request="catalog::onRefreshCatalog"
         data-request-update="{ 'shop-product/bundle': '#productBundleItems' }">
         {% if not bundleItem.is_required %}
             <option value="">-- Please Select --</option>

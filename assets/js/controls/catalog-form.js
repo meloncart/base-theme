@@ -33,12 +33,26 @@ class CatalogForm extends oc.ControlBase {
             data.priceMax = priceMax.value;
         }
 
-        oc.request(this.element, 'onAction', {
+        oc.request(this.element, 'onRefreshCatalog', {
             data: data,
-            update: {
-                'shop-category/category-products': '#categoryProducts'
-            }
+            update: this.getUpdateTargets('products')
         });
+    }
+
+    getUpdateTargets(...keys) {
+        const defaults = {
+            products: { partial: 'shop-category/category-products', selector: '#categoryProducts' }
+        };
+
+        const result = {};
+        for (const key of keys) {
+            const config = defaults[key];
+            const attrKey = key.charAt(0).toUpperCase() + key.slice(1);
+            const partial = this.element.dataset[`partial${attrKey}`] || config.partial;
+            const selector = this.element.dataset[`selector${attrKey}`] || config.selector;
+            result[partial] = selector;
+        }
+        return result;
     }
 }
 

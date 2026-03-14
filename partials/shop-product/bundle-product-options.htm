@@ -10,7 +10,7 @@
                     <select
                         name="{{ controlName }}[{{ option.hash }}]"
                         class="form-select form-select-sm"
-                        data-request="catalog::onAction"
+                        data-request="catalog::onRefreshCatalog"
                         data-request-update="{ 'shop-product/bundle': '#productBundleItems' }">
                         {% for value in option.values %}
                             <option

@@ -51,7 +51,7 @@
             <div>
                 {% for optionKey, optionName in viewModeOptions %}
                     <a
-                        href="javascript:;"
+                        href="#"
                         class="{{ viewMode == optionKey ? 'active' : 'text-muted' }} text-decoration-none me-3"
                         data-request="onAjax"
                         data-request-update="{ _self: true }"

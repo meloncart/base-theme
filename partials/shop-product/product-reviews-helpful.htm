@@ -15,7 +15,7 @@
     </span>
 {% else %}
     <a
-        href="javascript:;"
+        href="#"
         class="text-muted text-decoration-none text-reset"
         data-request="reviews::onVoteHelpful"
         data-request-data="review_id: {{ review.id }}"
@@ -27,7 +27,7 @@
         {% endif %}
     </a>
     <a
-        href="javascript:;"
+        href="#"
         class="text-muted text-decoration-none text-reset ms-4"
         data-request="reviews::onVoteNotHelpful"
         data-request-data="review_id: {{ review.id }}"

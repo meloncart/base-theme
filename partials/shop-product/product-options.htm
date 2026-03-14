@@ -11,7 +11,7 @@
                             name="product_options[{{ option.hash }}]"
                             class="form-select"
                             {% if product.use_variants %}
-                                data-request="catalog::onAction"
+                                data-request="catalog::onRefreshCatalog"
                                 data-request-update="{ 'shop-product/product-view': '#productPage' }"
                             {% endif %}>
                             {% for value in option.values %}
