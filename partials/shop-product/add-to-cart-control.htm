@@ -4,7 +4,7 @@
             <td>
                 {% set item = (variant is defined and variant) ? variant : product %}
                 <span class="product-price">
-                    {{ item.final_sale_price|currency }}
+                    {{ item.display_price|currency }}
                 </span>
             </td>
             <td class="cart-symbol">x</td>

@@ -42,7 +42,7 @@
                                 {% endif %}
                                 <span>
                                     <small class="text-muted">
-                                        {{ item.final_price|currency }}
+                                        {{ item.display_price|currency }}
                                     </small>
                                 </span>
                                 {% if not isBundleChild %}
@@ -80,11 +80,11 @@
                     </div>
                     <div class="col-2 text-end cart-price">
                         <span class="fw-bold">
-                            {{ item.final_line_price|currency }}
+                            {{ item.display_line_price|currency }}
                         </span>
-                        {% if item.final_discount > 0 %}
+                        {% if item.on_sale %}
                             <div class="text-decoration-line-through text-muted small">
-                                {{ (item.final_price * item.quantity)|currency }}
+                                {{ item.compare_line_price|currency }}
                             </div>
                         {% endif %}
                     </div>

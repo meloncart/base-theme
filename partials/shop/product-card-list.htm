@@ -31,9 +31,9 @@
                 </h2>
                 <div class="mt-3">
                     <div>
-                        <span class="text-dark">{{ product.final_sale_price|currency }}</span>
+                        <span class="text-dark">{{ product.display_price|currency }}</span>
                         {% if product.on_sale %}
-                            <span class="text-decoration-line-through text-muted">{{ product.final_price|currency }}</span>
+                            <span class="text-decoration-line-through text-muted">{{ product.compare_price|currency }}</span>
                         {% endif %}
                     </div>
                     <div class="mt-2">

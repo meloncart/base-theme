@@ -27,11 +27,11 @@
                         </div>
                         <div class="text-muted small">
                             <span>
-                                {{ product.final_sale_price|currency }}
+                                {{ product.display_price|currency }}
                             </span>
                             {% if product.on_sale %}
                                 <span class="text-decoration-line-through ms-1">
-                                    {{ product.final_price|currency }}
+                                    {{ product.compare_price|currency }}
                                 </span>
                             {% endif %}
                         </div>

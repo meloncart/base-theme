@@ -36,11 +36,11 @@
             {% set item = variant ?: product %}
             <div class="fs-4">
                 <span class="fw-bold text-dark">
-                    {{ item.final_sale_price|currency }}
+                    {{ item.display_price|currency }}
                 </span>
                 {% if item.on_sale %}
                     <span class="text-decoration-line-through text-muted">
-                        {{ item.final_price|currency }}
+                        {{ item.compare_price|currency }}
                     </span>
                 {% endif %}
             </div>

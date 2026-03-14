@@ -11,8 +11,8 @@
                             value="1" />
                         {{ extra.description }}
 
-                        {% if extra.final_price > 0 %}
-                            <span class="ms-2 price text-success">+{{ extra.final_price|currency }}</span>
+                        {% if extra.display_price > 0 %}
+                            <span class="ms-2 price text-success">+{{ extra.display_price|currency }}</span>
                         {% else %}
                             <span class="ms-2 price text-success">FREE</span>
                         {% endif %}

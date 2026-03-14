@@ -37,16 +37,16 @@
                         <span class="text-muted small">{{ item.variant.name }}</span><br />
                     {% endif %}
 
-                    <span class="text-success small">{{ item.unit_price|currency }}</span>
-                    {% if item.discount %}
-                        <span class="text-decoration-line-through text-muted small">{{ item.unit_price|currency }}</span>
+                    <span class="text-success small">{{ item.display_price|currency }}</span>
+                    {% if item.on_sale %}
+                        <span class="text-decoration-line-through text-muted small">{{ item.compare_price|currency }}</span>
                     {% endif %}
                 </div>
                 <div class="col-3 text-center">
                     {{ item.quantity }}
                 </div>
                 <div class="col-2 text-lg-end text-start text-md-end col-md-2">
-                    <span>{{ item.unit_line_price|currency }}</span>
+                    <span>{{ item.display_line_price|currency }}</span>
                 </div>
             </div>
         </li>

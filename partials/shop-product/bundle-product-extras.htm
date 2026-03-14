@@ -13,8 +13,8 @@
                     {{ post('bundle_items.' ~ bundleItem.id ~ '.extras.' ~ itemProduct.id ~ '.' ~ extra.hash) ? 'checked' }} />
                 <label class="form-check-label small" for="{{ extraId }}">
                     {{ extra.description }}
-                    {% if extra.final_price > 0 %}
-                        <span class="text-success ms-1">+{{ extra.final_price|currency }}</span>
+                    {% if extra.display_price > 0 %}
+                        <span class="text-success ms-1">+{{ extra.display_price|currency }}</span>
                     {% else %}
                         <span class="text-success ms-1">FREE</span>
                     {% endif %}
