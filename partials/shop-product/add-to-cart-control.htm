@@ -4,7 +4,7 @@
             <td>
                 <span class="product-price">
                     {% if variant is defined and variant %}
-                        {{ variant.getCompiledPrice(1)|currency }}
+                        {{ variant.getDisplayPrice(1)|currency }}
                     {% else %}
                         {{ product.final_sale_price|currency }}
                     {% endif %}
