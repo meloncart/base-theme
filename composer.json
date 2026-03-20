@@ -1,7 +1,7 @@
 {
-    "name": "meloncart/base-theme",
+    "name": "meloncart/fresh-theme",
     "type": "october-theme",
-    "description": "Meloncart base eCommerce theme",
+    "description": "Meloncart Fresh eCommerce theme",
     "keywords": ["meloncart", "cms", "ecommerce", "theme"],
     "authors": [
         {
