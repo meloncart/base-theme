@@ -47,47 +47,49 @@
     {% endfor %}
 </ul>
 
-<div class="card mb-3">
-    <div class="card-body py-2">
-        {% if couponCode %}
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    <i class="bi bi-tag-fill text-success"></i>
-                    <span class="fw-semibold">
-                        {{ couponCode }}
-                    </span>
-                </div>
-                <a
-                    href="#"
-                    data-request="onRemoveCoupon"
-                    data-request-update="{ 'shop-checkout/order-summary': '#shopCheckoutOrderSummary' }"
-                    data-attach-loading
-                    class="btn btn-sm btn-link text-danger p-0">
-                    Remove
-                </a>
-            </div>
-        {% else %}
-            <form>
-                <div class="input-group input-group-sm">
-                    <input
-                        type="text"
-                        name="coupon"
-                        class="form-control"
-                        placeholder="Coupon code" />
-                    <button
-                        type="submit"
-                        data-request="onApplyCoupon"
+{% if not hideCoupon %}
+    <div class="card mb-3">
+        <div class="card-body py-2">
+            {% if couponCode %}
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="bi bi-tag-fill text-success"></i>
+                        <span class="fw-semibold">
+                            {{ couponCode }}
+                        </span>
+                    </div>
+                    <a
+                        href="#"
+                        data-request="onRemoveCoupon"
                         data-request-update="{ 'shop-checkout/order-summary': '#shopCheckoutOrderSummary' }"
                         data-attach-loading
-                        data-request-flash
-                        class="btn btn-outline-secondary">
-                        Apply
-                    </button>
+                        class="btn btn-sm btn-link text-danger p-0">
+                        Remove
+                    </a>
                 </div>
-            </form>
-        {% endif %}
+            {% else %}
+                <form>
+                    <div class="input-group input-group-sm">
+                        <input
+                            type="text"
+                            name="coupon"
+                            class="form-control"
+                            placeholder="Coupon code" />
+                        <button
+                            type="submit"
+                            data-request="onApplyCoupon"
+                            data-request-update="{ 'shop-checkout/order-summary': '#shopCheckoutOrderSummary' }"
+                            data-attach-loading
+                            data-request-flash
+                            class="btn btn-outline-secondary">
+                            Apply
+                        </button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
     </div>
-</div>
+{% endif %}
 
 <div class="card">
     <ul class="list-group list-group-flush">
