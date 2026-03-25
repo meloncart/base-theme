@@ -129,13 +129,27 @@
                 <span>{{ order.final_shipping_quote|currency }}</span>
             {% endif %}
         </li>
+        {% if order.credit_applied > 0 %}
+            <li class="list-group-item d-flex justify-content-between small text-success">
+                <div class="me-auto">
+                    <div>
+                        Store credit applied
+                    </div>
+                </div>
+                <span>
+                    -{{ order.credit_applied|currency }}
+                </span>
+            </li>
+        {% endif %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <div class="me-auto">
                 <div class="fw-bold">
                     Total
                 </div>
             </div>
-            <span class="fw-bold fs-5">{{ order.total|currency }}</span>
+            <span class="fw-bold fs-5">
+                {{ order.amount_due|currency }}
+            </span>
         </li>
         <li class="list-group-item d-flex justify-content-between small">
             <small>Includes {{ order.total_tax|currency }} in taxes</small>

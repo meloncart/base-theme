@@ -1,0 +1,51 @@
+{% if creditBalance > 0 %}
+    <div class="card mb-3">
+        <div class="card-body py-2">
+            {% if order.credit_applied > 0 %}
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="bi bi-wallet2 text-success"></i>
+                        <span class="fw-semibold">
+                            Store credit: -{{ order.credit_applied|currency }}
+                        </span>
+                    </div>
+                    <a
+                        href="#"
+                        data-request="onRemoveCredit"
+                        data-request-update="{
+                            'shop-checkout/order-summary': '#shopCheckoutOrderSummary',
+                            'shop-checkout/checkout-credit-toggle': '#shopCheckoutCreditToggle',
+                            'shop-checkout/checkout-step-payment': '#shopCheckoutStepPayment',
+                            'shop-checkout/payment-form': '#shopPaymentForm'
+                        }"
+                        data-attach-loading
+                        class="btn btn-sm btn-link text-danger p-0">
+                        Remove
+                    </a>
+                </div>
+            {% else %}
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <i class="bi bi-wallet2"></i>
+                        <span>
+                            You have {{ creditBalance|currency }} in store credit
+                        </span>
+                    </div>
+                    <button
+                        type="button"
+                        data-request="onApplyCredit"
+                        data-request-update="{
+                            'shop-checkout/order-summary': '#shopCheckoutOrderSummary',
+                            'shop-checkout/checkout-credit-toggle': '#shopCheckoutCreditToggle',
+                            'shop-checkout/checkout-step-payment': '#shopCheckoutStepPayment',
+                            'shop-checkout/payment-form': '#shopPaymentForm'
+                        }"
+                        data-attach-loading
+                        class="btn btn-sm btn-success">
+                        Apply
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
