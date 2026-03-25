@@ -1,4 +1,4 @@
-{% if order.amount_due == 0 %}
+{% if invoice and invoice.amount_due == 0 %}
     <div class="d-grid">
         <button
             class="btn btn-lg btn-dark btn-block"
